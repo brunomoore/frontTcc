@@ -4,55 +4,50 @@
 /*
  * General styles
  */
-body, html {
-  background-image: url(../../../assets/images/background.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
+h1, h2, p, a {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
   color: #fff;
 }
 
-h1 {
+h1.titulo {
   padding-top: 110px;
   text-align: center;
   font-weight: 700;
 }
 
-h2 {
+h2.descricao {
   text-align: center;
   font-size: 18px;
   font-weight: 400;
   padding-bottom: 25px;
 }
 
-input[type='password'], input[type='text'] {
+.form-login {
   padding: 20px 20px;
   border-radius: 10px;
 }
 
-input[type='text'] {
+.form-login#username {
   background-image: url(../../../assets/images/icon-user.png);
   background-position: 15px 7px;
   background-repeat: no-repeat;
   text-indent: 40px;
 }
 
-input[type='password'] {
+.form-login#password {
   background-image: url(../../../assets/images/password-user.png);
   background-position: 15px 7px;
   background-repeat: no-repeat;
   text-indent: 40px;
 }
 
-input[type='password']::placeholder, input[type='text']::placeholder {
+.form-login::placeholder {
   color: #c4c2c2;
 }
 
-.btn {
-  font-weight: 800;
+.btn-login {
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
   background: #e74c3c;
   border: 0;
   padding: 8px 16px;
