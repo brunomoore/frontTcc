@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CFP';
-  static API_URL="http://localhost:8081";
-  // static API_URL="http://18.222.216.76:8081";
+ //  static API_URL="http://localhost:8081";
+   static API_URL="http://18.228.199.95:8081";
 }
