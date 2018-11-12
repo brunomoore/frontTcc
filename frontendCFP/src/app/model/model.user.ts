@@ -2,6 +2,8 @@ export class User {
   id : string;
   username: string="";
   password: string="";
-  fullName: string="";
+  name: string="";
+  lastName: string="";
+  agr: number;
 
 }
