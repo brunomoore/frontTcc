@@ -1,13 +1,12 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <h1>Vamos começar!</h1>
+      <p>Crie uma conta se ainda não é <strong>registrado.</strong></p>
 
-
-<div class="container">
-  <div class="row">
-    <h1>Vamos começar!</h1>
-    <p>Crie uma conta se ainda não é <strong>registrado.</strong></p>
-
-    <div class="col-md-6 col-md-offset-3 card">
+      <div class="col-md-6 col-md-offset-3 card">
         <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+                      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
             <span id="reauth-email" class="reauth-email"></span>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
               <input type="text" placeholder="Digite seu nome" class="form-control form-register" name="name" id="fullName" [(ngModel)]="user.name" #name="ngModel" required />
@@ -31,34 +30,36 @@
                 <div *ngIf="username.errors.pattern">
                   Digite um e-mail válido.
                 </div>
-      
+
               </div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-              <input type="password" placeholder="Digite uma senha" class="form-control form-register" name="password" id="password"[(ngModel)]="user.password" #password="ngModel" required minlength="4" />
-              <div *ngIf="f.submitted && !password.valid" class="help-block">
-      
-                <div *ngIf="password.errors.required">
-                  Campo de senha é obrigatório.
-                </div>
-                <div *ngIf="password.errors.minlength">
-                  Senha deve ter ao menos 4 caracteres.
-                </div>
-      
+              <div *ngIf="username.errors.pattern">
+                Digite um e-mail válido.
               </div>
+
             </div>
-            <div id="remember" class="checkbox">
-      
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <input type="password" placeholder="Digite uma senha" class="form-control form-register" name="password" id="password"
+              [(ngModel)]="user.password" #password="ngModel" required minlength="4" />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">
+
+              <div *ngIf="password.errors.required">
+                Campo de senha é obrigatório.
+              </div>
+              <div *ngIf="password.errors.minlength">
+                Senha deve ter ao menos 4 caracteres.
+              </div>
+
             </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
-          </form><!-- /form -->
+          </div>
+          <div id="remember" class="checkbox">
+
+          </div>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Cadastrar</button>
+        </form><!-- /form -->
+      </div>
     </div>
-  </div>
-  
-    
-</div><!-- /container -->
 
 
-
-
-
+  </div><!-- /container -->
+</div>

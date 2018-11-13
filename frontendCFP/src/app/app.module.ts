@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {routing} from "./app.routing";
 import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url.permission";
+import { SidebarDirective } from './sidebar.directive';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {UrlPermission} from "./urlPermission/url.permission";
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    SidebarDirective,
 
 
   ],
