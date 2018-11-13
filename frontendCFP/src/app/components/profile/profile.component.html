@@ -6,7 +6,7 @@
     <ul class="nav sidebar-nav">
       <li class="sidebar-brand">
         <a href="#">
-          CPF Menu
+        Menu
         </a>
       </li>
       <li>
@@ -37,7 +37,7 @@
             <span class="hamb-bottom"></span>
           </button>
         </div>
-          <p class="p-welcome">Bem vindo ao CPF, Pedro.</p>
+          <p class="p-welcome">Bem vindo ao seu <b>Controle Financeiro Pessoal</b>, {{currentUser.name}}</p>
       </div>
     </div>
   </div>
@@ -50,13 +50,12 @@
       <div class="resumo-receitas clearfix">
         <div class="col-md-6">
           <h2>Total em receitas:</h2>
-          <p class="money-rec">R$ 2.555,00</p>
+          <p class="money-rec">{{totalReceita}}</p>
         </div>
         <div class="col-md-6">
           <h2>Pricipais receitas:</h2>
-          <ul class="lista-receitas-principal">
-            <li>Salário - <span class="valor-receita">+ R$ 1.600,00</span></li>
-            <li>Vendas - <span class="valor-receita">+ R$ 500,00</span></li>
+          <ul class="lista-receitas-principal" *ngFor="let receita of receipts" >
+            <li>{{receita.name}} <span class="valor-receita">{{receita.value}}</span></li>
           </ul>
         </div>
       </div>
@@ -67,13 +66,12 @@
       <div class="resumo-despesas clearfix">
         <div class="col-md-6">
           <h2>Total em despesas:</h2>
-          <p class="money-rec">R$ 2.555,00</p>
+          <p class="money-rec">{{totalDespesa}}</p>
         </div>
         <div class="col-md-6">
           <h2>Pricipais despesas:</h2>
-          <ul class="lista-receitas-principal">
-            <li>Salário - <span class="valor-despesa">- R$ 1.600,00</span></li>
-            <li>Vendas - <span class="valor-despesa">- R$ 500,00</span></li>
+          <ul class="lista-receitas-principal" *ngFor="let despesa of expenses" >
+            <li>{{despesa.name}}<span class="valor-despesa">R${{despesa.value}}</span></li>
           </ul>
         </div>
       </div>

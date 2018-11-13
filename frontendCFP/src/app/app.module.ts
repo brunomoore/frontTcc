@@ -14,6 +14,9 @@ import {routing} from "./app.routing";
 import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url.permission";
 import { SidebarDirective } from './sidebar.directive';
+import { ReceiptService } from './services/receipt.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ExpenseService } from './services/expense.service';
 
 
 @NgModule({
@@ -27,9 +30,14 @@ import { SidebarDirective } from './sidebar.directive';
 
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,routing, FacebookModule.forRoot(),
+    BrowserModule,
+    HttpModule,
+    HttpClientModule,
+    FormsModule,
+    routing,
+    FacebookModule.forRoot(),
   ],
-  providers: [AuthService,AccountService,UrlPermission],
+  providers: [AuthService,AccountService,UrlPermission,ReceiptService, ExpenseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

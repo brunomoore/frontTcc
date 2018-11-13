@@ -23,7 +23,7 @@
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
               <input type="text" placeholder="E-mail" class="form-control form-register" name="username" id="username" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.username" #username="ngModel" required />
               <div *ngIf="f.submitted && !username.valid" class="help-block">
-      
+
                 <div *ngIf="username.errors.required">
                   É necessário digitar um e-mail.
                 </div>
@@ -37,7 +37,6 @@
               </div>
 
             </div>
-          </div>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <input type="password" placeholder="Digite uma senha" class="form-control form-register" name="password" id="password"
               [(ngModel)]="user.password" #password="ngModel" required minlength="4" />
