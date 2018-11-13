@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/font-awesome/css/font-awesome.css';
 
-body, html {
+/*body, html {
     background-image: url(../src/assets/images/background.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-  }
+  }*/

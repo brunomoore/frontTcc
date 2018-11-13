@@ -6,7 +6,7 @@ import {UrlPermission} from "./urlPermission/url.permission";
 
 
 const appRoutes: Routes = [
-  { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
+  { path: 'profile', component: ProfileComponent, canActivate: [UrlPermission] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 

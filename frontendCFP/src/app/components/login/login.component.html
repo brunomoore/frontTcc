@@ -1,31 +1,30 @@
-
-
-
 <div class="container-fluid">
   <div class="row">
-      <h1 class="titulo">Olá!</h1>
-      <h2 class="descricao">Ferramenta para gerenciar sua vida financeira.</h2>
+    <h1 class="titulo">Olá!</h1>
+    <h2 class="descricao">Ferramenta para gerenciar sua vida financeira.</h2>
 
-        <div class="col-md-4 col-md-offset-4">
-            <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
-              <span id="reauth-email" class="reauth-email"></span>
-              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <input type="text" placeholder="Login" class="form-control form-login" id="username" name="username" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.username" #username="ngModel" required />
-                <div *ngIf="f.submitted && !username.valid" class="help-block">Digite um e-mail válido</div>
-              </div>
-              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                <input type="password" placeholder="Senha" class="form-control form-login" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required />
-                <div *ngIf="f.submitted && !password.valid" class="help-block">Digite uma senha válida</div>
-              </div>
-              <div id="remember" class="checkbox">
-        
-              </div>
-              <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Login</button>
-            </form><!-- /form -->
-              <p class="sign-up-link">Ainda não possui seu login?</p><a [routerLink]="['/register']" class="register-link">Cadastre-se</a>
+    <div class="col-md-4 col-md-offset-4">
+      <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+        <span id="reauth-email" class="reauth-email"></span>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <input type="text" placeholder="Login" class="form-control form-login" id="username" name="username" pattern="[^ @]*@[^ @]*"
+            [(ngModel)]="user.username" #username="ngModel" required />
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Digite um e-mail válido</div>
         </div>
-  
-        
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <input type="password" placeholder="Senha" class="form-control form-login" id="password" name="password"
+            [(ngModel)]="user.password" #password="ngModel" required />
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Digite uma senha válida</div>
+        </div>
+        <div id="remember" class="checkbox">
+
+        </div>
+        <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Login</button>
+      </form><!-- /form -->
+      <p class="sign-up-link">Ainda não possui seu login?</p><a [routerLink]="['/register']" class="register-link">Cadastre-se</a>
+    </div>
+
+
   </div>
 </div><!-- /container -->
