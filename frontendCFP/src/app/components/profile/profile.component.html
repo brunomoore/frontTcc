@@ -55,7 +55,7 @@
         <div class="col-md-6">
           <h2>Pricipais receitas:</h2>
           <ul class="lista-receitas-principal" *ngFor="let receita of receipts" >
-            <li>{{receita.name}} <span class="valor-receita">{{receita.value}}</span></li>
+            <li>{{receita.name}}  - <span class="valor-receita">{{receita.value  | currency}}</span></li>
           </ul>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <div class="col-md-6">
           <h2>Pricipais despesas:</h2>
           <ul class="lista-receitas-principal" *ngFor="let despesa of expenses" >
-            <li>{{despesa.name}}<span class="valor-despesa">R${{despesa.value}}</span></li>
+            <li>{{despesa.name}} - <span class="valor-despesa">R$ {{despesa.value | currency}}</span></li>
           </ul>
         </div>
       </div>
