@@ -1,0 +1,83 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+ .container-fluid {
+    background-image: url(../../../assets/images/background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+   }
+  
+   h1, h2, p, a {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+  }
+  
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    padding-top: 20px;
+  }
+  
+  p {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px 0 20px 0;
+  }
+  
+  .card {
+    background: #fff;
+    padding: 50px;
+  }
+  
+  .form-register {
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid #c4c2c2;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    transition: all 0.28s ease;
+    box-shadow: none;
+    font-size: 16px;
+  }
+  
+  .form-register:focus {
+    border-bottom: 2px solid #e74c3c;
+    font-size: 12px;
+    box-shadow: none;
+  }
+  
+  button.btn-signin {
+    margin-top: 50px;
+  }
+  
+  .btn {
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    background: #e74c3c;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 10px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 60%;
+    margin: 0 auto;
+  }
+  
+  .btn:hover, .btn:active, .btn:visited, .btn:focus {
+    background: #cf3a2a;
+  }
+  
+  @media (min-width: 768px) {
+    .card {
+      border-radius: 10px !important;
+    }
+  }
