@@ -114,10 +114,9 @@
         <mat-toolbar>
                 <button class="hamburger mat-button" mat-icon-button (click)="sidenav.toggle()">
                   <mat-icon>menu</mat-icon>
-                  <span>Menu</span>
                 </button>
             
-                <span>Bem vindo ao CPF, Pedro</span>
+                <span>Bem vindo ao CFP, {{currentUser.name}}</span>
             
                 <button mat-icon-button [mat-menu-trigger-for]="menu">
                   <mat-icon>more_vert</mat-icon>
@@ -135,3 +134,7 @@
               </mat-menu>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<mat-card>
+
+asd
+</mat-card>
