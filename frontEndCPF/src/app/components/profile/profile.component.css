@@ -2,35 +2,31 @@
   background-image: linear-gradient(to bottom, #00b4db, #0083b0);
   color: #fff;
   justify-content: space-between;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
 }
 
-  span {
-      font-size: 16px;
-      font-weight: 700;
-  }
-
-  .hamburger {
-      height: 100%;
-      font-size: 18px;
-  }
-
-
-.mat-sidenav-container {
-  min-width: 400px;
-  max-width: 100%;
+span {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-  .mat-sidenav {
-      flex: 0 1 auto;
-  }
-  .menu-spacer {
-      flex: 1;
-  }
+.hamburger {
+  height: 100%;
+  font-size: 18px;
+}
 
-  .mat-list-item-content {
-      padding: 0 25px;
-  }
+.mat-sidenav {
+  flex: 0 1 auto;
+  width: 400px;
+}
+
+.menu-spacer {
+  flex: 1;
+}
+
+.mat-list-item-content {
+  padding: 0 25px;
+}
 
 
 .menu-container {

@@ -86,11 +86,8 @@
 </div>
 -->
 
-<div class="container">
-</div>
-
 <mat-sidenav-container fullscreen class="menu-container">
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav mode="side">
     <mat-nav-list>
             <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
 				<h2 matLine>Home</h2>
@@ -117,7 +114,7 @@
                   <span>Menu</span>
                 </button>
             
-                <span>Bem vindo ao CPF, Pedro</span>
+                <span>Bem vindo ao Controle Financeiro Pessoal, {{currentUser.name}}</span>
             
                 <button mat-icon-button [mat-menu-trigger-for]="menu">
                   <mat-icon>more_vert</mat-icon>
