@@ -1,140 +1,125 @@
-<!--<div id="wrapper" [ngClass]="ref.click === true? 'toggled' :''">
-  <div class="overlay" [ngStyle]="{disply:ref.click === true? 'block' :'none'}"></div>
+<div class="example-container">
+  <mat-toolbar class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-title">Olá, {{ currentUser.name }}.</h1>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-    <ul class="nav sidebar-nav">
-      <li class="sidebar-brand">
-        <a href="#">
-        Menu
+    <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" fxFlex>
+    <mat-sidenav #sidenav fixedTopGap="56" mode="side" Fixed>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
+          <h2 matLine>Home</h2>
+          <mat-icon matListIcon>home</mat-icon>
         </a>
-      </li>
-      <li>
-        <a href="#">Início</a>
-      </li>
-      <li>
-        <a href="#">Receitas</a>
-      </li>
-      <li>
-        <a href="#">Despesas</a>
-      </li>
-      <li>
-        <a href="#">Sair</a>
-      </li>
-    </ul>
-  </nav>
+        <a mat-list-item routerLink="/account" routerLinkActive="active-list-item">
+          <h2 matLine>Receitas</h2>
+          <mat-icon matListIcon>local_atm</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/settings" routerLinkActive="active-list-item">
+          <h2 matLine>Despesas</h2>
+          <mat-icon matListIcon>show_chart</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/settings" routerLinkActive="active-list-item">
+          <h2 matLine>Notificações</h2>
+          <mat-icon matListIcon>notification_important</mat-icon>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
 
+    <mat-sidenav-content>
+      <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+        <mat-card fxFlex class="receitas-card">
+          <mat-card-title class="card-title">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Receitas</span>
+            </div>
+          </mat-card-title>
 
+          <div [style.height.px]="280" class="push-top-sm">
+            <mat-card-subtitle>Resumo das receitas do mês:</mat-card-subtitle>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <span>Pepper</span>
+                  <span>300</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item fxLayout="row"> <span>Pepper</span> <span>400</span> </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item> <span>Pepper</span> <span>300</span> </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button color="primary">Adicionar</button>
+              <button mat-stroked-button color="primary">Detalhes</button>
+            </mat-card-actions>
+            <mat-card-footer>
+            </mat-card-footer>
+          </div>
+        </mat-card>
+        <mat-card fxFlex class="despesas-card">
+          <mat-card-title class="card-title">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Despesas</span>
+            </div>
+          </mat-card-title>
 
-  <div class="container-fluid header">
-    <div class="container">
-      <div class="row">
-        <div id="page-content-wrapper">
-          <button appSidebar #ref="appSidebar" type="button" class="hamburger is-closed" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-          </button>
-        </div>
-          <p class="p-welcome">Bem vindo ao seu <b>Controle Financeiro Pessoal</b>, {{currentUser.name}}</p>
-      </div>
-    </div>
-  </div>
+          <div [style.height.px]="280" class="push-top-sm">
+            <mat-card-subtitle>Resumo das despesas do mês:</mat-card-subtitle>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <span>Pepper</span>
+                  <span>-300</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item> <span>Pepper</span> <span>-400</span> </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item> <span>Pepper</span> <span>-300</span> </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
 
-  <div class="container">
-    <div class="row">
-      <div class="info">
-        <h1>Resumo do mês</h1>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button color="primary">Adicionar</button>
+              <button mat-stroked-button color="primary">Detalhes</button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
       </div>
-      <div class="resumo-receitas clearfix">
-        <div class="col-md-6">
-          <h2>Total em receitas:</h2>
-          <p class="money-rec">{{totalReceita | currency}}</p>
-        </div>
-        <div class="col-md-6">
-          <h2>Pricipais receitas:</h2>
-          <ul class="lista-receitas-principal" *ngFor="let receita of receipts" >
-            <li>{{receita.name}}  - <span class="valor-receita">{{receita.value  | currency}}</span></li>
-          </ul>
-        </div>
+      <div class="cont" fxLayout="column" fxLayout.xs="column" fxLayoutGap="20px">
+        <mat-card fxFlex>
+          <mat-card-title class="card-title">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Gráfico</span>
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle>Gráfico total do mês</mat-card-subtitle>
+          <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="40px">
+            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div class="control-btn">
-        <a href="#" class="btn btn-lg btn-primary btn-add">Adicionar</a>
-      </div>
-
-      <div class="resumo-despesas clearfix">
-        <div class="col-md-6">
-          <h2>Total em despesas:</h2>
-          <p class="money-rec">{{totalDespesa | currency}}</p>
-        </div>
-        <div class="col-md-6">
-          <h2>Pricipais despesas:</h2>
-          <ul class="lista-receitas-principal" *ngFor="let despesa of expenses" >
-            <li>{{despesa.name}} - <span class="valor-despesa">R$ {{despesa.value | currency}}</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="control-btn">
-        <a href="#" class="btn btn-lg btn-primary btn-add-des">Adicionar</a>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid footer">
-    <footer>
-      <p>Copyright © 2018 - SERV. All Rights Reserved.</p>
-    </footer>
-  </div>
+      <mat-menu x-position="before" #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>money_off</mat-icon>
+          <span>Sair</span>
+        </button>
+      </mat-menu>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
--->
-
-<div class="container">
-</div>
-
-<mat-sidenav-container fullscreen class="menu-container">
-  <mat-sidenav #sidenav>
-    <mat-nav-list>
-            <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
-				<h2 matLine>Home</h2>
-				<mat-icon matListIcon>home</mat-icon>
-			</a>
-			<a mat-list-item routerLink="/account" routerLinkActive="active-list-item">
-				<h2 matLine>Receitas</h2>
-				<mat-icon matListIcon>local_atm</mat-icon>
-			</a>
-			<a mat-list-item routerLink="/settings" routerLinkActive="active-list-item">
-				<h2 matLine>Despesas</h2>
-				<mat-icon matListIcon>show_chart</mat-icon>
-            </a>
-            <a mat-list-item routerLink="/settings" routerLinkActive="active-list-item">
-				<h2 matLine>Notificações</h2>
-				<mat-icon matListIcon>notification_important</mat-icon>
-			</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content fxFlexFill>
-        <mat-toolbar>
-                <button class="hamburger mat-button" mat-icon-button (click)="sidenav.toggle()">
-                  <mat-icon>menu</mat-icon>
-                </button>
-            
-                <span>Bem vindo ao CFP, {{currentUser.name}}</span>
-            
-                <button mat-icon-button [mat-menu-trigger-for]="menu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </mat-toolbar>
-              <mat-menu x-position="before" #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>person</mat-icon>
-                  <span>Perfil</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>money_off</mat-icon>
-                  <span>Sair</span>
-                </button>
-              </mat-menu>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-<mat-card>
-
-asd
-</mat-card>

@@ -10,6 +10,8 @@ import { ReceiptService } from './services/receipt.service';
 import { HttpModule } from "@angular/http";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -31,7 +33,9 @@ import {UrlPermission} from "./urlPermission/url.permission";
     HttpModule,
     HttpClientModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule,
+    NgxChartsModule
   ],
   providers: [AuthService, AccountService, UrlPermission, ReceiptService, ExpenseService],
   bootstrap: [AppComponent]

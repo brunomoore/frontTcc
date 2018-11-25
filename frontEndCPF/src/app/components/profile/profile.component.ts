@@ -8,6 +8,8 @@ import { ReceiptService } from "../../services/receipt.service";
 import { ExpenseService } from './../../services/expense.service';
 import { Receipt } from './../../model/model.receipt';
 
+import { single } from './data';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,8 +22,31 @@ export class ProfileComponent implements OnInit {
   receipts = []
   expenses = []
   currentUser: User;
+
+  //Gráfico
+  single: any[];
+  multi: any[];
+
+  view: any[] = [700, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Saldo do mês';
+  showYAxisLabel = true;
+  yAxisLabel = 'Valor';
+
+  colorScheme = {
+    domain: 
+    ['#5AA454', '#e74c3c', '#0083b0', '#AAAAAA']
+  };
+
   constructor(public authService: AuthService, public router: Router, public receiptService: ReceiptService,  public expenseService: ExpenseService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    Object.assign(this, { single });
   }
 
   ngOnInit() {
@@ -82,7 +107,7 @@ export class ProfileComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
-
+          console.log("error");
         });
   }
 
