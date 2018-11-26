@@ -12,6 +12,8 @@
 
   <mat-sidenav-container class="example-sidenav-container" fxFlex>
     <mat-sidenav #sidenav fixedTopGap="56" mode="side" Fixed>
+      <mat-icon class="icon-cfp" matListIcon>bar_chart <span>CFP</span></mat-icon>
+      <mat-divider class="menu-divider"></mat-divider>
       <mat-nav-list>
         <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
           <h2 matLine>Home</h2>
@@ -29,7 +31,12 @@
           <h2 matLine>Notificações</h2>
           <mat-icon matListIcon>notification_important</mat-icon>
         </a>
+        <a mat-list-item (click)="logOut()" routerLinkActive="active-list-item">
+          <h2 matLine>Logoff</h2>
+          <mat-icon matListIcon>money_off</mat-icon>
+        </a>
       </mat-nav-list>
+      <mat-divider class="menu-divider"></mat-divider>
     </mat-sidenav>
 
     <mat-sidenav-content>
@@ -44,82 +51,71 @@
           <div [style.height.px]="280" class="push-top-sm">
             <mat-card-subtitle>Resumo das receitas do mês:</mat-card-subtitle>
             <mat-card-content>
-              <mat-list>
+              <mat-list class="lista-card">
                 <mat-list-item>
                   <span>Pepper</span>
-                  <span>300</span>
+                  <span>+300</span>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item fxLayout="row"> <span>Pepper</span> <span>400</span> </mat-list-item>
+                <mat-list-item> <span>Pepper</span> <span>+400</span> </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item> <span>Pepper</span> <span>300</span> </mat-list-item>
+                <mat-list-item> <span>Pepper</span> <span>+300</span> </mat-list-item>
                 <mat-divider></mat-divider>
               </mat-list>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-stroked-button color="primary">Adicionar</button>
-                <button mat-stroked-button color="primary">Detalhes</button>
+              <button mat-stroked-button color="primary">Adicionar</button>
+              <button mat-stroked-button color="primary">Detalhes</button>
             </mat-card-actions>
             <mat-card-footer>
             </mat-card-footer>
           </div>
         </mat-card>
         <mat-card fxFlex class="despesas-card">
-            <mat-card-title class="card-title">
-              <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-                <span flex>Despesas</span>
-              </div>
-            </mat-card-title>
-  
-            <div [style.height.px]="280" class="push-top-sm">
-              <mat-card-subtitle>Resumo das despesas do mês:</mat-card-subtitle>
-              <mat-card-content>
-                <mat-list>
-                  <mat-list-item>
-                    <span>Pepper</span>
-                    <span>-300</span>
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item> <span>Pepper</span> <span>-400</span> </mat-list-item>
-                  <mat-divider></mat-divider>
-                  <mat-list-item> <span>Pepper</span> <span>-300</span> </mat-list-item>
-                  <mat-divider></mat-divider>
-                </mat-list>
-               
-              </mat-card-content>
-              <mat-card-actions>
-                  <button mat-stroked-button color="primary">Adicionar</button>
-                  <button mat-stroked-button color="primary">Detalhes</button>
-              </mat-card-actions>
+          <mat-card-title class="card-title">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Despesas</span>
             </div>
-          </mat-card>
+          </mat-card-title>
+
+          <div [style.height.px]="280" class="push-top-sm">
+            <mat-card-subtitle>Resumo das despesas do mês:</mat-card-subtitle>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <span>Pepper</span>
+                  <span>-300</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item> <span>Pepper</span> <span>-400</span> </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item> <span>Pepper</span> <span>-300</span> </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button color="primary">Adicionar</button>
+              <button mat-stroked-button color="primary">Detalhes</button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
       </div>
       <div class="cont" fxLayout="column" fxLayout.xs="column" fxLayoutGap="20px">
-      <mat-card fxFlex>
+        <mat-card fxFlex>
           <mat-card-title class="card-title">
-              <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-                <span flex>Gráfico</span>
-              </div>
-            </mat-card-title>
-            <mat-card-subtitle>Gráfico total do mês</mat-card-subtitle>
-            <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutGap="40px">
-              <ngx-charts-bar-vertical
-              [view]="view"
-              [scheme]="colorScheme"
-              [results]="single"
-              [gradient]="gradient"
-              [xAxis]="showXAxis"
-              [yAxis]="showYAxis"
-              [legend]="showLegend"
-              [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel"
-              [xAxisLabel]="xAxisLabel"
-              [yAxisLabel]="yAxisLabel"
-              (select)="onSelect($event)">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Gráfico</span>
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle>Gráfico total do mês</mat-card-subtitle>
+          <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="40px">
+            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
             </ngx-charts-bar-vertical>
-            </mat-card-content>
-      </mat-card>
-    </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
       <mat-menu x-position="before" #menu="matMenu">
         <button mat-menu-item>
           <mat-icon>person</mat-icon>
