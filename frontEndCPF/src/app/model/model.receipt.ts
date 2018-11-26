@@ -1,6 +1,5 @@
 export class Receipt {
-    id : string;
-    name: string="";
+    id: string;
+    name: string = '';
     value: number;
-  
   }

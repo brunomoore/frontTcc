@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import {AuthService} from "../../services/auth.service";
-import {User} from "../../model/model.user";
-import {Router} from "@angular/router";
+import {AuthService} from '../../services/auth.service';
+import {User} from '../../model/model.user';
+import {Router} from '@angular/router';
 import { Expense } from '../../model/model.expense';
-import { ReceiptService } from "../../services/receipt.service";
+import { ReceiptService } from '../../services/receipt.service';
 import { ExpenseService } from './../../services/expense.service';
 import { Receipt } from './../../model/model.receipt';
 
@@ -19,10 +19,11 @@ export class ProfileComponent implements OnInit {
 
   totalReceita = 0;
   totalDespesa = 0;
-  receipts = []
-  expenses = []
+  receipts = [];
+  expenses = [];
   currentUser: User;
-
+  mes: number;
+  //dateFilter = Date.now()
   //Gráfico
   single: any[];
   multi: any[];
@@ -40,11 +41,12 @@ export class ProfileComponent implements OnInit {
   yAxisLabel = 'Valor';
 
   colorScheme = {
-    domain: 
+    domain:
     ['#5AA454', '#e74c3c', '#0083b0', '#AAAAAA']
   };
 
-  constructor(public authService: AuthService, public router: Router, public receiptService: ReceiptService,  public expenseService: ExpenseService) {
+  constructor(public authService: AuthService, public router: Router,
+    public receiptService: ReceiptService,  public expenseService: ExpenseService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     Object.assign(this, { single });
   }
@@ -53,18 +55,24 @@ export class ProfileComponent implements OnInit {
     this.receiptService.getReceipts(this.currentUser.id).subscribe(
       data => {
 
-        console.log(data)
+        console.log(data);
         this.receipts = this.retiraArrayRec(data);
         this.somaTudoRec();
       }
       );
-      this.expenseService.getExpenses(this.currentUser.id).subscribe(
+
+      this.expenseService.getExpensesProfile(this.currentUser.id, this.mes).subscribe(
         data => {
-          this.expenses =this.retiraArrayDesp(data);
+          this.expenses = data;
           this.somaTudoDes();
         }
         );
-        console.log(this.receipts)
+        this.expenseService.getExpenses(this.currentUser.id).subscribe(
+          data => {
+            this.expenses = data;
+            this.somaTudoDes();
+          }
+          );
   }
   retiraArrayRec(data){
     let lista = []
@@ -107,7 +115,7 @@ export class ProfileComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
-          console.log("error");
+          console.log('error');
         });
   }
 

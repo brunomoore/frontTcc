@@ -19,11 +19,11 @@
           <h2 matLine>Home</h2>
           <mat-icon matListIcon>home</mat-icon>
         </a>
-        <a mat-list-item routerLink="/account" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/receitas" routerLinkActive="active-list-item">
           <h2 matLine>Receitas</h2>
           <mat-icon matListIcon>local_atm</mat-icon>
         </a>
-        <a mat-list-item routerLink="/settings" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
           <h2 matLine>Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
@@ -40,6 +40,11 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <!-- <mat-form-field>
+          <input required matInput [matDatepicker]="dateFilter" placeholder="Data do Resumo" ngModel name="dateFilter">
+          <mat-datepicker-toggle matSuffix [for]="dateFilter"></mat-datepicker-toggle>
+          <mat-datepicker #expireDate></mat-datepicker>
+        </mat-form-field> -->
       <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
         <mat-card fxFlex class="receitas-card">
           <mat-card-title class="card-title">
@@ -48,20 +53,17 @@
             </div>
           </mat-card-title>
 
-          <div [style.height.px]="280" class="push-top-sm">
+          <div>
             <mat-card-subtitle>Resumo das receitas do mês:</mat-card-subtitle>
             <mat-card-content>
-              <mat-list class="lista-card">
-                <mat-list-item>
-                  <span>Pepper</span>
-                  <span>+300</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> <span>Pepper</span> <span>+400</span> </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> <span>Pepper</span> <span>+300</span> </mat-list-item>
-                <mat-divider></mat-divider>
-              </mat-list>
+
+                <mat-list class="lista-card" *ngFor="let expense of expenses" >
+                  <mat-list-item>
+                    <span>{{expense.name}}</span>
+                    <span>+ {{expense.value | currency:'R$'}}</span>
+                  </mat-list-item>
+                  <mat-divider></mat-divider>
+                </mat-list>
             </mat-card-content>
             <mat-card-actions>
               <button mat-stroked-button color="primary">Adicionar</button>
@@ -82,15 +84,13 @@
             <mat-card-subtitle>Resumo das despesas do mês:</mat-card-subtitle>
             <mat-card-content>
               <mat-list>
-                <mat-list-item>
-                  <span>Pepper</span>
-                  <span>-300</span>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> <span>Pepper</span> <span>-400</span> </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item> <span>Pepper</span> <span>-300</span> </mat-list-item>
-                <mat-divider></mat-divider>
+                  <mat-list class="lista-card" *ngFor="let expense of expenses" >
+                      <mat-list-item>
+                        <span>{{expense.name}}</span>
+                        <span>- {{expense.value | currency:'R$'}}</span>
+                      </mat-list-item>
+                      <mat-divider></mat-divider>
+                    </mat-list>
               </mat-list>
             </mat-card-content>
             <mat-card-actions>
@@ -111,7 +111,7 @@
           <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="40px">
             <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
               [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" >
             </ngx-charts-bar-vertical>
           </mat-card-content>
         </mat-card>

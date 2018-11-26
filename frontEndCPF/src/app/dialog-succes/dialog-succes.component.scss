@@ -1,0 +1,12 @@
+.modalButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .okButton{
+    margin-left: 10px;
+  }
+  .fecharButton{
+    margin-right: 10px;
+  }
+}

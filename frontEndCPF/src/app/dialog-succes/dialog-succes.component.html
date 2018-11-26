@@ -1,0 +1,9 @@
+<p>
+  <b>
+    {{data.titulo}}
+  </b>
+</p>
+<div class="modalButtons">
+  <button mat-raised-button *ngIf="data.fechar fecharButton" type="button" color="primary" (click)="onCloseClick()" cdkFocusInitial>Fechar</button>
+  <button mat-raised-button class="button-success okButton" type="button" (click)="onAcceptClick()">Ok</button>
+</div>
