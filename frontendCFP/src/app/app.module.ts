@@ -17,6 +17,8 @@ import { SidebarDirective } from './sidebar.directive';
 import { ReceiptService } from './services/receipt.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ExpenseService } from './services/expense.service';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { ExpenseService } from './services/expense.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     HttpClientModule,
     FormsModule,

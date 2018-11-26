@@ -21,20 +21,14 @@
               <div *ngIf="f.submitted && !fullName.valid" class="help-block">Campo de idade é obrigatório.</div>
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-              <input type="text" placeholder="E-mail" class="form-control form-register" name="username" id="username" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.username" #username="ngModel" required />
+              <input type="text" placeholder="E-mail" class="form-control form-register" name="username" id="username"  [(ngModel)]="user.username" #username="ngModel" required />
               <div *ngIf="f.submitted && !username.valid" class="help-block">
 
                 <div *ngIf="username.errors.required">
                   É necessário digitar um e-mail.
                 </div>
-                <div *ngIf="username.errors.pattern">
-                  Digite um e-mail válido.
-                </div>
-
               </div>
-              <div *ngIf="username.errors.pattern">
-                Digite um e-mail válido.
-              </div>
+        
 
             </div>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
