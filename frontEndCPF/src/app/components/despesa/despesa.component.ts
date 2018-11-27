@@ -70,6 +70,7 @@ export class DespesaComponent implements OnInit {
             }
           });
           this.limparForm();
+          this.ngOnInit();
         }, err => {
           const dialogRef = this.dialog.open(DialogSuccesComponent, {
             width: '40%',

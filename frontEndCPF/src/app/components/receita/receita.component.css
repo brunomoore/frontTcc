@@ -1,0 +1,132 @@
+#pay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-rows{
+    margin-left: 75%;
+  }
+  .backButton {
+    margin-right: 6.5px !important;
+  }
+  .consultButton {
+    margin-left: 6.5px !important;
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  h1, h2, p, a, span {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .example-is-mobile .example-toolbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+  
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+  
+  .app-title {
+    font-weight: 800;
+  }
+  
+  .mat-toolbar {
+    color: #fff;
+    justify-content: space-between;
+    background-image: linear-gradient(to top, #00b4db, #0083b0);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+  }
+  
+  .icon-cfp {
+    color: #fff;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    padding: 40px 0;
+    font-weight: 800;
+  }
+  
+  .mat-sidenav {
+    background-color: #1D2B36;
+    width: 300px;
+  }
+  
+  .mat-nav-list .mat-list-item {
+    font-weight: 800;
+    color: #fff !important;
+    transition: 0.5s;
+  }
+  
+  .mat-nav-list .mat-list-item:hover {
+    background-color: #162029;
+  }
+  
+  .mat-sidenav-content h1 {
+    font-size: 19px;
+  }
+  
+  .mat-card {
+    margin: 2em;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+  }
+  
+  .mat-card.despesas-card .mat-card-title {
+    background-image: linear-gradient(to top, #e74c3c, #e4533b);
+  }
+  
+  .mat-card-title {
+    padding: 20px 20px;
+    background-image: linear-gradient(to top, #00b4db, #0083b0);
+    font-weight: 800;
+    color: #fff;
+  }
+  .mat-card-subtitle {
+    padding: 10px 15px;
+  }
+  
+  .mat-list.lista-card {
+    width: 100%;
+  }
+  
+  :host /deep/ .mat-list-item-content {
+    justify-content: space-between;
+  }
+  
+  .receitas-card .mat-list-item {
+    color: #5AA454;
+  }
+  
+  .despesas-card .mat-list-item {
+    color: red;
+  }
+  
+  .mat-card-actions {
+    padding: 10px 20px;
+  }
+  
+  .mat-card-actions button:first-child {
+    margin-right: 10px;
+  }
+  

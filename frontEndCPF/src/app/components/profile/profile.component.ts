@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
       data => {
 
         console.log(data);
-        this.receipts = this.retiraArrayRec(data);
+        this.receipts  = data;
         this.somaTudoRec();
       }
       );
