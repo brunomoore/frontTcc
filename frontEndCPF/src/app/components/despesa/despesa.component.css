@@ -90,6 +90,8 @@ h1, h2, p, a, span {
   margin: 2em;
   padding: 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+  max-width: 70%;
+  margin-left: 15%;
 }
 
 .mat-card.despesas-card .mat-card-title {

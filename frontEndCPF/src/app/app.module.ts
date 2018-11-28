@@ -22,6 +22,7 @@ import { DespesaComponent } from './components/despesa/despesa.component';
 import { ReceitaComponent } from './components/receita/receita.component';
 import { DialogSuccesComponent } from './dialog-succes/dialog-succes.component';
 import { DataService } from './services/data.service';
+import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DataService } from './services/data.service';
     LoginComponent,
     DespesaComponent,
     ReceitaComponent,
-    DialogSuccesComponent
+    DialogSuccesComponent,
+    NotificacaoComponent
   ],
   imports: [
     BrowserModule,

@@ -64,26 +64,35 @@
           <mat-card-content>
             <form #f="ngForm" (ngSubmit)="onSubmit()">
               <div >
-                <mat-form-field>
-                    <input
-                      required
-                      matInput
-                      name="name"
-                      placeholder="Nome da Despesa"
-                      [(ngModel)]="name"
-                    />
-                  </mat-form-field>
+                <div >
+
                   <mat-form-field>
-                    <input
-                      required
-                      matInput
-                      name="value"
-                      placeholder="Valor da Despesa"
-                      [(ngModel)]="value"
-                    />
-                  </mat-form-field>
+                      <input
+                        required
+                        matInput
+                        name="name"
+                        placeholder="Nome da Despesa"
+                        [(ngModel)]="name"
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input
+                        required
+                        matInput
+                        name="value"
+                        placeholder="Valor da Despesa"
+                        [(ngModel)]="value"
+                      />
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input required matInput [matDatepicker]="expenseDate" placeholder="Data da despesa" ngModel name="expenseDate">
+                      <mat-datepicker-toggle matSuffix [for]="expenseDate"></mat-datepicker-toggle>
+                      <mat-datepicker #expenseDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div>
                   <mat-form-field>
-                      <input required matInput [matDatepicker]="expireDate" placeholder="Data da despesa" ngModel name="expireDate">
+                      <input required matInput [matDatepicker]="expireDate" placeholder="Data de Vencimento" ngModel name="expireDate">
                       <mat-datepicker-toggle matSuffix [for]="expireDate"></mat-datepicker-toggle>
                       <mat-datepicker #expireDate></mat-datepicker>
                     </mat-form-field>
@@ -101,6 +110,8 @@
                     color="primary"
                     name="pay"
                   ></mat-slide-toggle>
+
+                </div>
               </div>
               <mat-card-actions class="button-rows">
                 <button

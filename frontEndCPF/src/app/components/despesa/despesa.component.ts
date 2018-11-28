@@ -22,6 +22,7 @@ export class DespesaComponent implements OnInit {
   currentUser: User;
   userId: number;
   expireDate: Date;
+  expenseDate: Date;
   parcela: number;
   listaDespesa: Expense[] = [];
   length = 0;
