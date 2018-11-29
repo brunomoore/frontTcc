@@ -1,3 +1,4 @@
+import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'receitas', component: ReceitaComponent},
   { path: 'despesas', component: DespesaComponent},
+  { path: 'notificacoes', component: NotificacaoComponent },
 
   // otherwise redirect to profile
   { path: '**', redirectTo: '/login' }
