@@ -95,6 +95,9 @@ export class ProfileComponent implements OnInit {
     return lista;
   }
 
+  getTotalCost() {
+    return this.expenses.map(t => t.value).reduce((acc, value) => acc + value, 0);
+  }
   somaTudoRec(){
     this.receipts.forEach(element => {
      this.totalReceita += element.value;

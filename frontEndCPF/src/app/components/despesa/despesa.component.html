@@ -12,36 +12,22 @@
 
   <mat-sidenav-container class="example-sidenav-container" fxFlex>
     <mat-sidenav #sidenav fixedTopGap="56" mode="side" Fixed>
-      <mat-icon class="icon-cfp" matListIcon
-        >bar_chart <span>CFP</span></mat-icon
-      >
+      <mat-icon class="icon-cfp" matListIcon>bar_chart <span>CFP</span></mat-icon>
       <mat-divider class="menu-divider"></mat-divider>
       <mat-nav-list>
         <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item">
           <h2 matLine>Home</h2>
           <mat-icon matListIcon>home</mat-icon>
         </a>
-        <a
-          mat-list-item
-          routerLink="/receitas"
-          routerLinkActive="active-list-item"
-        >
+        <a mat-list-item routerLink="/receitas" routerLinkActive="active-list-item">
           <h2 matLine>Receitas</h2>
           <mat-icon matListIcon>local_atm</mat-icon>
         </a>
-        <a
-          mat-list-item
-          routerLink="/despesas"
-          routerLinkActive="active-list-item"
-        >
+        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
           <h2 matLine>Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
-        <a
-          mat-list-item
-          routerLink="/notificacoes"
-          routerLinkActive="active-list-item"
-        >
+        <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-list-item">
           <h2 matLine>Notificações</h2>
           <mat-icon matListIcon>notification_important</mat-icon>
         </a>
@@ -63,72 +49,40 @@
           </mat-card-title>
           <mat-card-content>
             <form #f="ngForm" (ngSubmit)="onSubmit()">
-              <div >
-                <div >
+              <div>
+                <div>
 
                   <mat-form-field>
-                      <input
-                        required
-                        matInput
-                        name="name"
-                        placeholder="Nome da Despesa"
-                        [(ngModel)]="name"
-                      />
-                    </mat-form-field>
-                    <mat-form-field>
-                      <input
-                        required
-                        matInput
-                        name="value"
-                        placeholder="Valor da Despesa"
-                        [(ngModel)]="value"
-                      />
-                    </mat-form-field>
-                    <mat-form-field>
-                      <input required matInput [matDatepicker]="expenseDate" placeholder="Data da despesa" ngModel name="expenseDate">
-                      <mat-datepicker-toggle matSuffix [for]="expenseDate"></mat-datepicker-toggle>
-                      <mat-datepicker #expenseDate></mat-datepicker>
-                    </mat-form-field>
+                    <input required matInput name="name" placeholder="Nome da Despesa" [(ngModel)]="name" />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input required matInput name="value" placeholder="Valor da Despesa" [(ngModel)]="value" />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input required matInput [matDatepicker]="expenseDate" placeholder="Data da despesa" ngModel name="expenseDate">
+                    <mat-datepicker-toggle matSuffix [for]="expenseDate"></mat-datepicker-toggle>
+                    <mat-datepicker #expenseDate></mat-datepicker>
+                  </mat-form-field>
                 </div>
                 <div>
                   <mat-form-field>
-                      <input required matInput [matDatepicker]="expireDate" placeholder="Data de Vencimento" ngModel name="expireDate">
-                      <mat-datepicker-toggle matSuffix [for]="expireDate"></mat-datepicker-toggle>
-                      <mat-datepicker #expireDate></mat-datepicker>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input
-                          matInput
-                          name="parcela"
-                          placeholder="Numero de Parcelas"
-                          [(ngModel)]="parcela"
-                        />
-                      </mat-form-field>
+                    <input required matInput [matDatepicker]="expireDate" placeholder="Data de Vencimento" ngModel name="expireDate">
+                    <mat-datepicker-toggle matSuffix [for]="expireDate"></mat-datepicker-toggle>
+                    <mat-datepicker #expireDate></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput name="parcela" placeholder="Numero de Parcelas" [(ngModel)]="parcela" />
+                  </mat-form-field>
                   <b>Despesa Paga ?</b>
-                  <mat-slide-toggle
-                    [(ngModel)]="pay"
-                    color="primary"
-                    name="pay"
-                  ></mat-slide-toggle>
+                  <mat-slide-toggle [(ngModel)]="pay" color="primary" name="pay"></mat-slide-toggle>
 
                 </div>
               </div>
               <mat-card-actions class="button-rows">
-                <button
-                  mat-raised-button
-                  color="primary"
-                  type="button"
-                  class="backButton"
-                  (click)="voltar()"
-                >
+                <button mat-raised-button color="primary" type="button" class="backButton" (click)="voltar()">
                   Voltar
                 </button>
-                <button
-                  mat-raised-button
-                  class="button-success consultButton"
-                  type="submit"
-                  [disabled]="form.invalid"
-                >
+                <button mat-raised-button class="button-success consultButton" type="submit" [disabled]="form.invalid">
                   Salvar
                 </button>
               </mat-card-actions>
@@ -138,44 +92,73 @@
       </div>
 
       <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-          <mat-card fxFlex class="receitas-card">
-            <mat-card-title class="card-title">
-              <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-                <span flex>Despesas</span>
-              </div>
-            </mat-card-title>
-          <mat-table #table class="mat-elevation-z3"
-               [dataSource]="dataSource">
-          <ng-container matColumnDef="Nome">
-            <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Valor">
-            <mat-header-cell *matHeaderCellDef>Valor</mat-header-cell>
-            <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Data">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let element"> {{element.pay ? 'Pago' :  'Não Pago'}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Editar">
-            <mat-header-cell mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
-            <mat-cell mat-cell *matCellDef="let element" class="icons" >
-              <mat-icon>create</mat-icon>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <mat-paginator class="mat-elevation-z3 paginator"
-        #paginator [pageIndex]="page"
-        [length]="length"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="[10, 25, 100]"
-        showFirstLastButtons>
-        </mat-paginator>
-      </mat-card>
-    </div>
+        <mat-card fxFlex class="receitas-card">
+          <mat-card-title class="card-title">
+            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+              <span flex>Despesas</span>
+            </div>
+          </mat-card-title>
+          <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Proucurar...">
+            </mat-form-field>
+          <mat-table #table class="mat-elevation-z3" [dataSource]="dataSource">
+            <ng-container matColumnDef="Parcela">
+              <mat-header-cell *matHeaderCellDef>Numero da Parcela</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.numeroParcela}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef> <strong>Total</strong>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="Nome">
+              <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="ValorTotal">
+                <mat-header-cell *matHeaderCellDef>Valor Total</mat-header-cell>
+                <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.valorTotal |
+                  currency:'BRL':true:'1.2-2' }} </mat-cell>
+                  <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+              </ng-container>
+            <ng-container matColumnDef="Valor">
+              <mat-header-cell *matHeaderCellDef>Valor Parcelado</mat-header-cell>
+              <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.value |
+                currency:'BRL':true:'1.2-2' }} </mat-cell>
+                <mat-footer-cell *matFooterCellDef> <strong>{{getTotalCost() | currency:'BRL':true:'1.2-2'}}</strong> </mat-footer-cell>
+
+            </ng-container>
+            <ng-container matColumnDef="Pago">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Pago ?</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.pay ? 'Sim' : 'Não'}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="DataVencimento">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Data de Vencimento</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.expireDate | date:'dd/MM/yyyy'}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="Marcar">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Marcar como pago</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> <input matTooltip="Marcar despesa como paga ?" type="checkbox"
+                  value="" [(ngModel)]="element.pay" (change)="editDespesa(element)"> </mat-cell>
+                  <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="Editar">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Excluir</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element" class="icons">
+                <button matTooltip="Excluir" title="Excluir" mat-button class="btn-table-excluir " (click)="deletarDespesa(element)">
+                  <i class="material-icons icon-btn">delete</i>
+                </button>
+              </mat-cell>
+              <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>
+          </mat-table>
+          <mat-paginator class="mat-elevation-z3 paginator" #paginator [pageIndex]="page" [length]="length" [pageSize]="pageSize"
+            [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons>
+          </mat-paginator>
+        </mat-card>
+      </div>
 
       <mat-menu x-position="before" #menu="matMenu">
         <button mat-menu-item>

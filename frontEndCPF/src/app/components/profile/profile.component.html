@@ -60,7 +60,7 @@
                   <mat-list class="lista-card" *ngFor="let receipt of receipts" >
                       <mat-list-item>
                         <span>{{receipt.name}}</span>
-                        <span>- {{receipt.value | currency:'R$'}}</span>
+                        <span>- {{receipt.value | currency:'BRL':true:'1.2-2'}}</span>
                       </mat-list-item>
                       <mat-divider></mat-divider>
                     </mat-list>
@@ -86,11 +86,15 @@
                   <mat-list class="lista-card" *ngFor="let expense of expenses" >
                       <mat-list-item>
                         <span>{{expense.name}}</span>
-                        <span>- {{expense.value | currency:'R$'}}</span>
-                      </mat-list-item>
+                        <span>- {{expense.value | currency:'BRL':true:'1.2-2'}}</span>
+                      </mat-list-item>             
                       <mat-divider></mat-divider>
                     </mat-list>
-              </mat-list>
+                    <mat-list-item>     
+                      <span>Total</span>     
+                      <span>- {{getTotalCost()| currency:'BRL':true:'1.2-2'}}</span>
+                    </mat-list-item>
+                  </mat-list>
             </mat-card-content>
             <mat-card-actions>
               <button mat-stroked-button color="primary">Adicionar</button>

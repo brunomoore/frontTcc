@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,9 @@ import { ReceitaComponent } from './components/receita/receita.component';
 import { DialogSuccesComponent } from './dialog-succes/dialog-succes.component';
 import { DataService } from './services/data.service';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -47,7 +50,7 @@ import { NotificacaoComponent } from './components/notificacao/notificacao.compo
     NgxChartsModule
   ],
   entryComponents: [DialogSuccesComponent],
-  providers: [AuthService, AccountService, UrlPermission, ReceiptService, ExpenseService, DataService],
+  providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission, ReceiptService, ExpenseService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

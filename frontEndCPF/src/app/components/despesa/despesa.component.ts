@@ -28,10 +28,8 @@ export class DespesaComponent implements OnInit {
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Nome', 'Valor', 'Data', 'Editar'];
+  displayedColumns: string[] = ['Parcela', 'Nome', 'ValorTotal', 'Valor', 'Pago', 'DataVencimento', 'Editar', 'Marcar'];
   dataSource = new MatTableDataSource<Expense>();
-  editarDespesa: Boolean = false;
-  editDespesa: Expense;
   message: Expense;
 
   @ViewChild('f') form: any;
@@ -44,18 +42,25 @@ export class DespesaComponent implements OnInit {
   ) { this.currentUser = JSON.parse(localStorage.getItem('currentUser')); }
 
   ngOnInit() {
+    this.getExpenses();
+    console.log(this.dataSource);
+  }
+
+  getExpenses(){
     this.despesaService.getExpenses(this.currentUser.id).subscribe(
       data => {
-        console.log(data);
           this.listaDespesa = data;
           console.log(this.listaDespesa);
           this.dataSource = new MatTableDataSource<Expense>(this.listaDespesa);
         }
       );
-
-    console.log(this.dataSource);
   }
-
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  getTotalCost() {
+    return this.listaDespesa.map(t => t.value).reduce((acc, value) => acc + value, 0);
+  }
   onSubmit() {
       console.log(this.form.value);
       // console.log(this.form.value.expireDate = this.dataService.criaVetorData(this.form.value.expireDate));
@@ -93,6 +98,42 @@ export class DespesaComponent implements OnInit {
   limparForm() {
     this.form.reset();
   }
+
+  editDespesa(element) {
+    console.log(element)
+    this.despesaService.updateExpense(element).subscribe(
+    result => {
+      const dialogRef = this.dialog.open(DialogSuccesComponent, {
+        width: '40%',
+        data: {
+          titulo: 'Despesa paga com sucesso!',
+          path: 'NR',
+          fechar: false
+        }
+        
+      });
+      this.ngOnInit();
+    }) 
+  }   
+
+  deletarDespesa(element) {
+    console.log(element)
+    this.despesaService.deleteExpense(element.id).subscribe(
+    result => {
+      const dialogRef = this.dialog.open(DialogSuccesComponent, {
+        width: '40%',
+        data: {
+          titulo: 'Despesa apagada com sucesso!',
+          path: 'NR',
+          fechar: false
+        }
+        
+      });
+      this.ngOnInit();
+    }) 
+  }  
+  
+
 
   logOut() {
     this.authService.logOut()

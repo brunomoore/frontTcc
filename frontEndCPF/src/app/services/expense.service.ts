@@ -25,15 +25,11 @@ export class ExpenseService {
   getExpense(id) {
     return this.http.get<Expense>(AppComponent.API_URL + '/expense', id);
   }
-
+ 
   deleteExpense(id) {
-    return this.http.delete(AppComponent.API_URL + '/expense', id);
+    return this.http.delete(`${AppComponent.API_URL}/expense/${id}`);
   }
-
-  updateAutoTexto(expense: Expense): Observable<Expense> {
-    return this.http.put<Expense>(AppComponent.API_URL + '/expense', expense);
-
+  updateExpense(expense: Expense) {
+    return this.http.put(`${AppComponent.API_URL}/expense/${expense.id}`, expense);
   }
-
-
 }
