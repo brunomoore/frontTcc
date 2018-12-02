@@ -22,15 +22,14 @@ export class ReceitaComponent implements OnInit {
   currentUser: User;
   userId: number;
   expireDate: Date;
+  receiptDate: Date;
   parcela: number;
   listaReceita: Receipt[] = [];
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Nome', 'Valor', 'Data', 'Editar'];
+  displayedColumns: string[] = ['Nome', 'Valor', 'DataVencimento', 'Editar'];
   dataSource = new MatTableDataSource<Receipt>();
-  editarReceita: Boolean = false;
-  editReceita: Receipt;
   message: Receipt;
 
   @ViewChild('f') form: any;
@@ -43,18 +42,27 @@ export class ReceitaComponent implements OnInit {
   ) { this.currentUser = JSON.parse(localStorage.getItem('currentUser')); }
 
   ngOnInit() {
+    this.getReceipts();
+    console.log(this.dataSource);
+  }
+
+  getReceipts(){
     this.receitaService.getReceipts(this.currentUser.id).subscribe(
       data => {
-        console.log(data);
+        console.log(this.currentUser.id)
+        console.log(data)
           this.listaReceita = data;
           console.log(this.listaReceita);
           this.dataSource = new MatTableDataSource<Receipt>(this.listaReceita);
         }
       );
-
-    console.log(this.dataSource);
   }
-
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  getTotalCost() {
+    return this.listaReceita.map(t => t.value).reduce((acc, value) => acc + value, 0);
+  }
   onSubmit() {
       console.log(this.form.value);
       // console.log(this.form.value.expireDate = this.dataService.criaVetorData(this.form.value.expireDate));
@@ -70,6 +78,7 @@ export class ReceitaComponent implements OnInit {
             }
           });
           this.limparForm();
+          this.ngOnInit();
         }, err => {
           const dialogRef = this.dialog.open(DialogSuccesComponent, {
             width: '40%',
@@ -91,6 +100,42 @@ export class ReceitaComponent implements OnInit {
   limparForm() {
     this.form.reset();
   }
+
+  editReceita(element) {
+    console.log(element)
+    this.receitaService.updateReceipt(element).subscribe(
+    result => {
+      const dialogRef = this.dialog.open(DialogSuccesComponent, {
+        width: '40%',
+        data: {
+          titulo: 'Receita paga com sucesso!',
+          path: 'NR',
+          fechar: false
+        }
+        
+      });
+      this.ngOnInit();
+    }) 
+  }   
+
+  deletarReceita(element) {
+    console.log(element)
+    this.receitaService.deleteReceipt(element.id).subscribe(
+    result => {
+      const dialogRef = this.dialog.open(DialogSuccesComponent, {
+        width: '40%',
+        data: {
+          titulo: 'Receita apagada com sucesso!',
+          path: 'NR',
+          fechar: false
+        }
+        
+      });
+      this.ngOnInit();
+    }) 
+  }  
+  
+
 
   logOut() {
     this.authService.logOut()

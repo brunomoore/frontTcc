@@ -18,8 +18,8 @@ export class ExpenseService {
   getExpenses(id) {
     return this.http.get<Expense[]>(AppComponent.API_URL + '/expense?id=' + id);
   }
-  getExpensesProfile(id, mes) {
-    return this.http.get<Expense[]>(AppComponent.API_URL + '/profile/expense?id=' + id + '&mes=' + mes);
+  getExpensesProfile(id, inicio, fim) {
+    return this.http.get<Expense[]>(AppComponent.API_URL + '/expense/profile?id=' + id + '&inicio=' + inicio +'&fim=' + fim);
   }
 
   getExpense(id) {
