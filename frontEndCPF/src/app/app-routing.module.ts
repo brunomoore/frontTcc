@@ -7,6 +7,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UrlPermission } from './urlPermission/url.permission';
 import { ReceitaComponent } from './components/receita/receita.component';
 import { DespesaComponent } from './components/despesa/despesa.component';
+import { TipoDespesaComponent } from './components/tipo-despesa/tipo-despesa.component';
+import { TipoReceitaComponent } from './components/tipo-receita/tipo-receita.component';
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [UrlPermission]},
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'receitas', component: ReceitaComponent},
   { path: 'despesas', component: DespesaComponent},
   { path: 'notificacoes', component: NotificacaoComponent },
+  { path: 'tipoDespesa', component: TipoDespesaComponent },
+  { path: 'tipoReceita', component: TipoReceitaComponent },
 
   // otherwise redirect to profile
   { path: '**', redirectTo: '/login' }

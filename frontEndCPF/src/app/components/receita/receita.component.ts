@@ -7,6 +7,8 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../model/model.user';
 import { Receipt } from '../../model/model.receipt';
 import { DataService } from '../../services/data.service';
+import { ReceiptTypeService } from 'src/app/services/receiptType.service';
+import { ReceiptType } from 'src/app/model/model.receiptType';
 
 
 
@@ -19,6 +21,7 @@ export class ReceitaComponent implements OnInit {
   name: string ;
   value: number;
   pay: Boolean;
+  type: ReceiptType;
   currentUser: User;
   userId: number;
   expireDate: Date;
@@ -28,9 +31,10 @@ export class ReceitaComponent implements OnInit {
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Nome', 'Valor', 'DataVencimento', 'Editar'];
+  displayedColumns: string[] = ['Nome', 'Tipo', 'Valor', 'DataVencimento', 'Editar'];
   dataSource = new MatTableDataSource<Receipt>();
   message: Receipt;
+  tipos = [];
 
   @ViewChild('f') form: any;
   constructor(
@@ -38,14 +42,23 @@ export class ReceitaComponent implements OnInit {
     private router: Router,
     private receitaService: ReceiptService,
     private dataService: DataService,
+    private tipoService: ReceiptTypeService,
     public dialog: MatDialog,
   ) { this.currentUser = JSON.parse(localStorage.getItem('currentUser')); }
 
   ngOnInit() {
     this.getReceipts();
+    this.getTipo();
     console.log(this.dataSource);
   }
 
+  getTipo(){
+    this.tipoService.getReceiptTypes().subscribe(
+      data => {
+          this.tipos = data;
+        }
+      );
+  }
   getReceipts(){
     this.receitaService.getReceipts(this.currentUser.id).subscribe(
       data => {

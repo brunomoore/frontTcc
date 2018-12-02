@@ -23,8 +23,16 @@
           <h2 matLine>Receitas</h2>
           <mat-icon matListIcon>local_atm</mat-icon>
         </a>
+        <a mat-list-item routerLink="/tipoReceita" routerLinkActive="active-list-item">
+          <h2 matLine>Tipos de Receitas</h2>
+          <mat-icon matListIcon>local_atm</mat-icon>
+        </a>
         <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
           <h2 matLine>Despesas</h2>
+          <mat-icon matListIcon>show_chart</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item">
+          <h2 matLine>Tipos de Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
         <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-list-item">
@@ -56,6 +64,14 @@
                     <input required matInput name="name" placeholder="Nome da Despesa" [(ngModel)]="name" />
                   </mat-form-field>
                   <mat-form-field>
+                    <mat-select placeholder="Tipo da Despesa" name="type"  [(ngModel)]="type" required>
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                        {{tipo.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
                     <input required matInput name="value" placeholder="Valor da Despesa" [(ngModel)]="value" />
                   </mat-form-field>
                   <mat-form-field>
@@ -73,10 +89,7 @@
                   <mat-form-field>
                     <input matInput name="parcela" placeholder="Numero de Parcelas" [(ngModel)]="parcela" />
                   </mat-form-field>
-                  <b>Despesa Paga ?</b>
-                  <mat-slide-toggle [(ngModel)]="pay" color="primary" name="pay"></mat-slide-toggle>
-
-                </div>
+                  </div>
               </div>
               <mat-card-actions class="button-rows">
                 <button mat-raised-button color="primary" type="button" class="backButton" (click)="voltar()">
@@ -111,6 +124,11 @@
               <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
               <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="Tipo">
+              <mat-header-cell *matHeaderCellDef>Tipo da Despesa</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element"> {{element.type?.name}} </mat-cell>
+              <mat-footer-cell *matFooterCellDef> <strong>Total</strong>  </mat-footer-cell>
             </ng-container>
             <ng-container matColumnDef="ValorTotal">
                 <mat-header-cell *matHeaderCellDef>Valor Total</mat-header-cell>

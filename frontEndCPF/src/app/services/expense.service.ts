@@ -12,8 +12,8 @@ export class ExpenseService {
   constructor(private http: HttpClient) { }
   expense: Expense;
 
-  createExpense(expense: any, id): Observable<Expense> {
-    return this.http.post<Expense>(AppComponent.API_URL + '/expense?id=' + id , expense, );
+  createExpense(expense: any, id, expenseId): Observable<Expense> {
+    return this.http.post<Expense>(AppComponent.API_URL + '/expense?id=' + id + '&expenseId=' + expenseId , expense, );
   }
   getExpenses(id) {
     return this.http.get<Expense[]>(AppComponent.API_URL + '/expense?id=' + id);

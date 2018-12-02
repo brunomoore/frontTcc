@@ -23,8 +23,16 @@
           <h2 matLine>Receitas</h2>
           <mat-icon matListIcon>local_atm</mat-icon>
         </a>
+        <a mat-list-item routerLink="/tipoReceita" routerLinkActive="active-list-item">
+          <h2 matLine>Tipos de Receitas</h2>
+          <mat-icon matListIcon>local_atm</mat-icon>
+        </a>
         <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
           <h2 matLine>Despesas</h2>
+          <mat-icon matListIcon>show_chart</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item">
+          <h2 matLine>Tipos de Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
         <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-list-item">
@@ -47,42 +55,6 @@
             Filtrar Gastos
           </mat-card-title>
           <div>
-            <!-- <button mat-stroked-button color="primary" class="mes">
-            <strong>Janeiro</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong> Fevereiro </strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Março</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Abril</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Maio</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Junho</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Julho</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Agosto</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong> Setembro</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong>Outubro</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong> Novembro</strong>
-          </button>
-          <button mat-stroked-button color="primary" class="mes">
-              <strong> Dezembro</strong>
-          </button> -->
             <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
             <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
             <mat-datepicker #inicio></mat-datepicker>
@@ -159,7 +131,7 @@
             </mat-card-title>
   
             <div>
-              <mat-card-subtitle>Resumo das receitas do periodo:</mat-card-subtitle>
+              <mat-card-subtitle>Balanço do periodo:</mat-card-subtitle>
               <mat-card-content>
                   <mat-list class="lista-card">
                       <mat-list-item>
@@ -168,7 +140,7 @@
                         </mat-list-item>
                     <mat-list-item>
                         <span>Total de Despesas</span>
-                        <span>+ {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
+                        <span>- {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
                       </mat-list-item>
                   <mat-list-item>
                       <span>Saldo de Caixa</span>

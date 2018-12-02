@@ -2,86 +2,70 @@ import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { DialogSuccesComponent } from '../../dialog-succes/dialog-succes.component';
-import { ExpenseService } from '../../services/expense.service';
+import { ReceiptTypeService } from '../../services/receiptType.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../model/model.user';
-import { Expense } from '../../model/model.expense';
+import { ReceiptType } from '../../model/model.receiptType';
 import { DataService } from '../../services/data.service';
-import { ExpenseTypeService } from 'src/app/services/expenseType.service';
-import { ExpenseType } from 'src/app/model/model.expenseType';
 
 
 
 @Component({
-  selector: 'app-despesa',
-  templateUrl: './despesa.component.html',
-  styleUrls: ['./despesa.component.css']
+  selector: 'app-tipo-receita',
+  templateUrl: './tipo-receita.component.html',
+  styleUrls: ['./tipo-receita.component.css']
 })
-export class DespesaComponent implements OnInit {
+export class TipoReceitaComponent implements OnInit {
   name: string ;
-  value: number;
-  type: ExpenseType;
-  pay: Boolean;
+  param: string; 
+  description: string;
+  ativo: Boolean;
   currentUser: User;
   userId: number;
-  expireDate: Date;
-  expenseDate: Date;
-  parcela: number;
-  tipos = []
-  listaDespesa: Expense[] = [];
+  listaTipoReceita: ReceiptType[] = [];
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Parcela', 'Nome', 'Tipo', 'ValorTotal', 'Valor', 'Pago', 'DataVencimento', 'Editar', 'Marcar'];
-  dataSource = new MatTableDataSource<Expense>();
-  message: Expense;
+  displayedColumns: string[] = ['Nome', 'Editar'];
+  dataSource = new MatTableDataSource<ReceiptType>();
+  message: ReceiptType;
 
   @ViewChild('f') form: any;
   constructor(
     private authService: AuthService,
     private router: Router,
-    private despesaService: ExpenseService,
-    private dataService: DataService,
-    private tipoService: ExpenseTypeService,
+    private tipoReceitaService: ReceiptTypeService,
     public dialog: MatDialog,
   ) { this.currentUser = JSON.parse(localStorage.getItem('currentUser')); }
 
   ngOnInit() {
-    this.getExpenses();
-    this.getTipo();
-    console.log(this.dataSource);
+    this.getReceiptTypes();
   }
 
-  getExpenses(){
-    this.despesaService.getExpenses(this.currentUser.id).subscribe(
+  getReceiptTypes(){
+    this.tipoReceitaService.getReceiptTypes().subscribe(
       data => {
-          this.listaDespesa = data;
-          console.log(this.listaDespesa);
-          this.dataSource = new MatTableDataSource<Expense>(this.listaDespesa);
-        }
-      );
-  }
-  getTipo(){
-    this.tipoService.getExpenseTypes().subscribe(
-      data => {
-          this.tipos = data;
+        console.log(data)
+          this.listaTipoReceita = data;
+          console.log(this.listaTipoReceita);
+          this.dataSource = new MatTableDataSource<ReceiptType>(this.listaTipoReceita);
         }
       );
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  getTotalCost() {
-    return this.listaDespesa.map(t => t.value).reduce((acc, value) => acc + value, 0);
-  }
+
   onSubmit() {
       console.log(this.form.value);
-      this.despesaService.createExpense(this.form.value, this.currentUser.id, this.form.value.type.id).subscribe(
+      // console.log(this.form.value.expireDate = this.dataService.criaVetorData(this.form.value.expireDate));
+      // this.form.value.expireDate = this.dataService.criaVetorData(this.form.value.expireDate);
+      this.tipoReceitaService.createReceiptType(this.form.value, this.currentUser.id).subscribe(
         result => {
           const dialogRef = this.dialog.open(DialogSuccesComponent, {
             width: '40%',
             data: {
-              titulo: 'Despesa cadastrada com sucesso!',
+              titulo: 'Tipo da Receita cadastrada com sucesso!',
               path: 'NR',
               fechar: false
             }
@@ -110,14 +94,14 @@ export class DespesaComponent implements OnInit {
     this.form.reset();
   }
 
-  editDespesa(element) {
+  editTipoReceita(element) {
     console.log(element)
-    this.despesaService.updateExpense(element).subscribe(
+    this.tipoReceitaService.updateReceiptType(element).subscribe(
     result => {
       const dialogRef = this.dialog.open(DialogSuccesComponent, {
         width: '40%',
         data: {
-          titulo: 'Despesa paga com sucesso!',
+          titulo: 'Tipo da Receita alterada com sucesso!',
           path: 'NR',
           fechar: false
         }
@@ -127,14 +111,14 @@ export class DespesaComponent implements OnInit {
     }) 
   }   
 
-  deletarDespesa(element) {
+  deletarTipoReceita(element) {
     console.log(element)
-    this.despesaService.deleteExpense(element.id).subscribe(
+    this.tipoReceitaService.deleteReceiptType(element.id).subscribe(
     result => {
       const dialogRef = this.dialog.open(DialogSuccesComponent, {
         width: '40%',
         data: {
-          titulo: 'Despesa apagada com sucesso!',
+          titulo: 'Tipo da Receita apagada com sucesso!',
           path: 'NR',
           fechar: false
         }

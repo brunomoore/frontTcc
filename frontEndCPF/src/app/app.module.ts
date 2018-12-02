@@ -25,6 +25,11 @@ import { DataService } from './services/data.service';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { NotificationService } from './services/notification.service';
+import { TipoDespesaComponent } from './components/tipo-despesa/tipo-despesa.component';
+import { TipoReceitaComponent } from './components/tipo-receita/tipo-receita.component';
+import { ExpenseTypeService } from './services/expenseType.service';
+import { ReceiptTypeService } from './services/receiptType.service';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -36,7 +41,9 @@ registerLocaleData(ptBr)
     DespesaComponent,
     ReceitaComponent,
     DialogSuccesComponent,
-    NotificacaoComponent
+    NotificacaoComponent,
+    TipoDespesaComponent,
+    TipoReceitaComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,8 @@ registerLocaleData(ptBr)
     NgxChartsModule
   ],
   entryComponents: [DialogSuccesComponent],
-  providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission, ReceiptService, ExpenseService, DataService],
+  providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission, 
+  ReceiptService, ExpenseService, DataService, NotificationService, ExpenseTypeService, ReceiptTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

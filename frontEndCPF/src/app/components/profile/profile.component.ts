@@ -25,6 +25,9 @@ export class ProfileComponent implements OnInit {
   totalDespesa = 0;
   receipts = [];
   expenses = [];
+  valorRec: number;
+  valorDesp: number;
+  valorTot: number;
   listaGrafico = [];
   ano: number;
   currentUser: User;
@@ -70,27 +73,46 @@ export class ProfileComponent implements OnInit {
       this.expenseService.getExpensesProfile(this.currentUser.id, firstDay, lastDay).subscribe(
         data => {
           this.expenses = data;
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
+            this.listaGrafico = [
+            {
+              "name": "Receitas",
+              "value": this.valorRec
+            },
+            {
+              "name": "Despesas",
+              "value": this.valorDesp
+            },
+            {
+              "name": "Total",
+              "value": this.valorTot
+            }
+          ];
         }
+        
+        
       );
       this.receiptService.getReceiptsProfile(this.currentUser.id, firstDay, lastDay).subscribe(
         data => {
           this.receipts = data;
   
-          const valorRec = this.getTotalCostReceitas();
-          const valorDesp = this.getTotalCostDespesas();
-          const valorTot = this.getSaldo();
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
             this.listaGrafico = [
             {
               "name": "Receitas",
-              "value": valorRec
+              "value": this.valorRec
             },
             {
               "name": "Despesas",
-              "value": valorDesp
+              "value": this.valorDesp
             },
             {
               "name": "Total",
-              "value": valorTot
+              "value": this.valorTot
             }
           ];
           console.log(this.getTotalCostDespesas());
@@ -104,11 +126,45 @@ export class ProfileComponent implements OnInit {
       this.expenseService.getExpensesProfile(this.currentUser.id, this.inicioDate, this.fimDate).subscribe(
         data => {
           this.expenses = data;
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
+            this.listaGrafico = [
+            {
+              "name": "Receitas",
+              "value": this.valorRec
+            },
+            {
+              "name": "Despesas",
+              "value": this.valorDesp
+            },
+            {
+              "name": "Total",
+              "value": this.valorTot
+            }
+          ];
         }
       );
       this.receiptService.getReceiptsProfile(this.currentUser.id, this.inicioDate, this.fimDate).subscribe(
         data => {
           this.receipts = data;
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
+            this.listaGrafico = [
+            {
+              "name": "Receitas",
+              "value": this.valorRec
+            },
+            {
+              "name": "Despesas",
+              "value": this.valorDesp
+            },
+            {
+              "name": "Total",
+              "value": this.valorTot
+            }
+          ];
         }
         
       );
@@ -141,21 +197,21 @@ export class ProfileComponent implements OnInit {
       this.receiptService.getReceiptsProfile(this.currentUser.id, firstDay, lastDay).subscribe(
         data => {
           this.receipts = data;
-          const valorRec = this.getTotalCostReceitas();
-          const valorDesp = this.getTotalCostDespesas();
-          const valorTot = this.getSaldo();
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
             this.listaGrafico = [
             {
               "name": "Receitas",
-              "value": valorRec
+              "value": this.valorRec
             },
             {
               "name": "Despesas",
-              "value": valorDesp
+              "value": this.valorDesp
             },
             {
               "name": "Total",
-              "value": valorTot
+              "value": this.valorTot
             }
           ];
           console.log(this.listaGrafico)
@@ -171,21 +227,21 @@ export class ProfileComponent implements OnInit {
       this.receiptService.getReceiptsProfile(this.currentUser.id, this.inicioDate, this.fimDate).subscribe(
         data => {
           this.receipts = data;
-          const valorRec = this.getTotalCostReceitas();
-          const valorDesp = this.getTotalCostDespesas();
-          const valorTot = this.getSaldo();
+          this.valorRec = this.getTotalCostReceitas();
+          this.valorDesp = this.getTotalCostDespesas();
+          this.valorTot = this.getSaldo();
             this.listaGrafico = [
             {
               "name": "Receitas",
-              "value": valorRec
+              "value": this.valorRec
             },
             {
               "name": "Despesas",
-              "value": valorDesp
+              "value": this.valorDesp
             },
             {
               "name": "Total",
-              "value": valorTot
+              "value": this.valorTot
             }
           ];
           console.log(this.listaGrafico)
