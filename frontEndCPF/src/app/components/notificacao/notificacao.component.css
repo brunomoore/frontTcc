@@ -4,9 +4,15 @@
     justify-content: center;
     align-items: center;
   }
+
   .button-rows{
-    margin-left: 75%;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px 0px 20px 24px !important;
+    font-size: 18px;
   }
+
   .backButton {
     margin-right: 6.5px !important;
   }
@@ -134,5 +140,24 @@
   
   .mat-card-actions button:first-child {
     margin-right: 10px;
+  }
+
+  .mat-form-field {
+    width: 50%;
+    padding: 5px 20px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .mat-table {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .mat-input-element {
+    caret-color: #0083b0;
+    padding-bottom: 7px;
+  }
+  
+  .excluir-title {
+    padding-left: 24px;
   }
   

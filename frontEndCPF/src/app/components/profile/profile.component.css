@@ -7,9 +7,11 @@
   left: 0;
   right: 0;
 }
+
 .meses{
-  margin-left: 25%;
+  max-width: 70%;
 }
+
 .mes{
   margin-right: 3px
 }
@@ -27,6 +29,7 @@ h1, h2, p, a, span {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
+  overflow: hidden;
 }
 
 .example-is-mobile .example-sidenav-container {
@@ -119,4 +122,8 @@ h1, h2, p, a, span {
 
 .mat-card-actions button:first-child {
   margin-right: 10px;
+}
+
+.card-filtro {
+  width: calc(100% - 10px);
 }

@@ -55,10 +55,10 @@
               <span flex>Cadastro de Despesas</span>
             </div>
           </mat-card-title>
-          <mat-card-content>
+          <mat-card-content fxLayout="row">
             <form #f="ngForm" (ngSubmit)="onSubmit()">
               <div>
-                <div>
+                <div class="content-card">
 
                   <mat-form-field>
                     <input required matInput name="name" placeholder="Nome da Despesa" [(ngModel)]="name" />
@@ -160,7 +160,7 @@
                   <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
             </ng-container>
             <ng-container matColumnDef="Editar">
-              <mat-header-cell mat-header-cell *matHeaderCellDef>Excluir</mat-header-cell>
+              <mat-header-cell mat-header-cell *matHeaderCellDef class="excluir-title">Excluir</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element" class="icons">
                 <button matTooltip="Excluir" title="Excluir" mat-button class="btn-table-excluir " (click)="deletarDespesa(element)">
                   <i class="material-icons icon-btn">delete</i>
