@@ -49,23 +49,30 @@
 
     <mat-sidenav-content>
       <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-
+          <div class="card-filtro">
         <mat-card class="meses">
-          <mat-card-title>
-            Filtrar Gastos
-          </mat-card-title>
-          <div>
-            <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
-            <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
-            <mat-datepicker #inicio></mat-datepicker>
-            <input required matInput [matDatepicker]="fim" placeholder="Até" [(ngModel)]="fimDate" name="fim">
-            <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
-            <mat-datepicker #fim></mat-datepicker>
+          
+            <mat-card-title>
+              Filtrar Gastos
+            </mat-card-title>
+        
+          <div fxLayout="column">
+            <div class="filtro-picker">
+                <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
+                <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
+                <mat-datepicker #inicio></mat-datepicker>
+            </div>
+            <div class="filtro-picker">
+                <input required matInput [matDatepicker]="fim" placeholder="Até" [(ngModel)]="fimDate" name="fim">
+                <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
+                <mat-datepicker #fim></mat-datepicker>
+            </div>
             <mat-card-actions>
                 <button mat-stroked-button color="primary" (click)="buscarGastos(inicio, fim)">Buscar</button>
               </mat-card-actions>
           </div>
         </mat-card>
+      </div>
       </div>
 
       <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
