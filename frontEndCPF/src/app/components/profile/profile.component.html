@@ -15,7 +15,7 @@
       <mat-icon class="icon-cfp" matListIcon>bar_chart <span>CFP</span></mat-icon>
       <mat-divider class="menu-divider"></mat-divider>
       <mat-nav-list>
-        <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item">
           <h2 matLine>Home</h2>
           <mat-icon matListIcon>home</mat-icon>
         </a>
@@ -25,15 +25,15 @@
         </a>
         <a mat-list-item routerLink="/tipoReceita" routerLinkActive="active-list-item">
           <h2 matLine>Tipos de Receitas</h2>
-          <mat-icon matListIcon>local_atm</mat-icon>
+          <mat-icon matListIcon>money</mat-icon>
         </a>
-        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
-        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Tipos de Despesas</h2>
-          <mat-icon matListIcon>show_chart</mat-icon>
+          <mat-icon matListIcon>bar_chart</mat-icon>
         </a>
         <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-list-item">
           <h2 matLine>Notificações</h2>
@@ -49,142 +49,155 @@
 
     <mat-sidenav-content>
       <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-          <div class="card-filtro">
-        <mat-card class="meses">
-          
-            <mat-card-title>
-              Filtrar Gastos
-            </mat-card-title>
-        
-          <div fxLayout="column">
-            <div class="filtro-picker">
-                <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
-                <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
-                <mat-datepicker #inicio></mat-datepicker>
-            </div>
-            <div class="filtro-picker">
-                <input required matInput [matDatepicker]="fim" placeholder="Até" [(ngModel)]="fimDate" name="fim">
-                <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
-                <mat-datepicker #fim></mat-datepicker>
-            </div>
-            <mat-card-actions>
-                <button mat-stroked-button color="primary" (click)="buscarGastos(inicio, fim)">Buscar</button>
-              </mat-card-actions>
-          </div>
-        </mat-card>
-      </div>
-      </div>
-
-      <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-        <mat-card fxFlex class="receitas-card">
-          <mat-card-title class="card-title">
-            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-              <span flex>Receitas</span>
-            </div>
-          </mat-card-title>
-
-          <div>
-            <mat-card-subtitle>Resumo das receitas do periodo:</mat-card-subtitle>
-            <mat-card-content>
-              <mat-list>
-                <mat-list class="lista-card" *ngFor="let receipt of receipts">
-                  <mat-list-item>
-                    <span>{{receipt.name}}</span>
-                    <span>+ {{receipt.value | currency:'BRL':true:'1.2-2'}}</span>
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                </mat-list>
-                <mat-list-item>
-                    <span>Total</span>
-                    <span>+ {{getTotalCostReceitas()| currency:'BRL':true:'1.2-2'}}</span>
-                  </mat-list-item>
-              </mat-list>
-            </mat-card-content>
-          </div>
-        </mat-card>
-        <mat-card fxFlex class="despesas-card">
-          <mat-card-title class="card-title">
-            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-              <span flex>Despesas</span>
-            </div>
-          </mat-card-title>
-
-          <div>
-            <mat-card-subtitle>Resumo das despesas do periodo:</mat-card-subtitle>
-            <mat-card-content>
-              <mat-list>
-                <mat-list class="lista-card" *ngFor="let expense of expenses">
-                  <mat-list-item>
-                    <span>{{expense.name}}</span>
-                    <span>- {{expense.value | currency:'BRL':true:'1.2-2'}}</span>
-                  </mat-list-item>
-                  <mat-divider></mat-divider>
-                </mat-list>
-                <mat-list-item>
-                  <span>Total</span>
-                  <span>- {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
-                </mat-list-item>
-              </mat-list>
-            </mat-card-content>
-          </div>
-        </mat-card>
-      </div>
-      <div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
-          <mat-card fxFlex class="receitas-card">
+        <div class="card-filtro">
+          <mat-card class="meses">
             <mat-card-title class="card-title">
               <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-                <span flex>Saldo de Caixa</span>
+                <span flex>Filtrar Gastos</span>
               </div>
             </mat-card-title>
-  
-            <div>
-              <mat-card-subtitle>Balanço do periodo:</mat-card-subtitle>
-              <mat-card-content>
-                  <mat-list class="lista-card">
-                      <mat-list-item>
-                          <span>Total de Receitas</span>
-                          <span>+ {{getTotalCostReceitas()| currency:'BRL':true:'1.2-2'}}</span>
-                        </mat-list-item>
-                    <mat-list-item>
-                        <span>Total de Despesas</span>
-                        <span>- {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
-                      </mat-list-item>
-                  <mat-list-item>
-                      <span>Saldo de Caixa</span>
-                      <span> {{ getSaldo()| currency:'BRL':true:'1.2-2'}}</span>
-                    </mat-list-item>
-                </mat-list>
-              </mat-card-content>
-            </div>
-          </mat-card>
-      </div>
-      
-      <div class="cont" fxLayout="column" fxLayout.xs="column" fxLayoutGap="20px">
-        <mat-card fxFlex>
-          <mat-card-title class="card-title">
-            <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
-              <span flex>Resumo</span>
-            </div>
-          </mat-card-title>
-          <mat-card-subtitle>Balanço Financeiro</mat-card-subtitle>
-          <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="40px">
-            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="listaGrafico" [gradient]="gradient"
-              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
-            </ngx-charts-bar-vertical>
-          </mat-card-content>
+              <div fxLayout="column">
+                <div class="filtro-picker">
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Início</mat-label>
+                    <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
+                    <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
+                    <mat-datepicker #inicio></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+                <div class="filtro-picker">
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Fim</mat-label>
+                    <input required matInput [matDatepicker]="fim" placeholder="Até" [(ngModel)]="fimDate" name="fim">
+                    <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
+                    <mat-datepicker #fim></mat-datepicker>
+                  </mat-form-field>
+                </div>
+            <mat-card-actions>
+              <button mat-stroked-button color="primary" (click)="buscarGastos(inicio, fim)">Buscar</button>
+            </mat-card-actions>
+        </div>
         </mat-card>
       </div>
-      <mat-menu x-position="before" #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>person</mat-icon>
-          <span>Perfil</span>
-        </button>
-        <button mat-menu-item (click)="logOut()">
-          <mat-icon>money_off</mat-icon>
-          <span>Sair</span>
-        </button>
-      </mat-menu>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+</div>
+
+<div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <mat-card fxFlex class="receitas-card">
+    <mat-card-title class="card-title">
+      <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+        <span flex>Receitas</span>
+      </div>
+    </mat-card-title>
+
+    <div>
+      <mat-card-subtitle>Resumo das receitas do periodo:</mat-card-subtitle>
+      <mat-card-content>
+        <mat-list>
+          <mat-list class="lista-card" *ngFor="let receipt of receipts">
+            <mat-list-item>
+              <span>{{receipt.name}}</span>
+              <span>+ {{receipt.value | currency:'BRL':true:'1.2-2'}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-list-item>
+            <span>Total</span>
+            <span>+ {{getTotalCostReceitas()| currency:'BRL':true:'1.2-2'}}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" routerLink="/receitas">Detalhes</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+  <mat-card fxFlex class="despesas-card">
+    <mat-card-title class="card-title">
+      <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+        <span flex>Despesas</span>
+      </div>
+    </mat-card-title>
+
+    <div>
+      <mat-card-subtitle>Resumo das despesas do periodo:</mat-card-subtitle>
+      <mat-card-content>
+        <mat-list>
+          <mat-list class="lista-card" *ngFor="let expense of expenses">
+            <mat-list-item>
+              <span>{{expense.name}}</span>
+              <span>- {{expense.value | currency:'BRL':true:'1.2-2'}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-list-item>
+            <span>Total</span>
+            <span>- {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" routerLink="/despesas">Detalhes</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+</div>
+<div class="cont" fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+  <mat-card fxFlex class="receitas-card">
+    <mat-card-title class="card-title">
+      <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+        <span flex>Saldo de Caixa</span>
+      </div>
+    </mat-card-title>
+
+    <div>
+      <mat-card-subtitle>Balanço do periodo:</mat-card-subtitle>
+      <mat-card-content>
+        <mat-list class="lista-card">
+          <mat-list-item>
+            <span>Total de Receitas</span>
+            <span>+ {{getTotalCostReceitas()| currency:'BRL':true:'1.2-2'}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span class="red">Total de Despesas</span>
+            <span class="red">- {{getTotalCostDespesas()| currency:'BRL':true:'1.2-2'}}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span class="blue">Saldo de Caixa</span>
+            <span class="blue"> {{ getSaldo()| currency:'BRL':true:'1.2-2'}}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>
+
+<div class="cont" fxLayout="column" fxLayout.xs="column" fxLayoutGap="20px">
+  <mat-card fxFlex>
+    <mat-card-title class="card-title">
+      <div fxLayout="row" fxLayoutAlign="start center" class="card-title">
+        <span flex>Resumo</span>
+      </div>
+    </mat-card-title>
+    <mat-card-subtitle>Balanço Financeiro</mat-card-subtitle>
+    <mat-card-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="40px">
+      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="listaGrafico" [gradient]="gradient"
+        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+      </ngx-charts-bar-vertical>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item [routerLink]="['/profile']">
+    <mat-icon>person</mat-icon>
+    <span>Perfil</span>
+  </button>
+  <button mat-menu-item (click)="logOut()">
+    <mat-icon>money_off</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-menu>
+</mat-sidenav-content>
+</mat-sidenav-container>
 </div>

@@ -9,16 +9,16 @@
                       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
             <span id="reauth-email" class="reauth-email"></span>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
-              <input type="text" placeholder="Digite seu nome" class="form-control form-register" name="name" id="fullName" [(ngModel)]="user.name" #name="ngModel" required />
-              <div *ngIf="f.submitted && !fullName.valid" class="help-block">Campo de nome é obrigatório.</div>
+              <input type="text" placeholder="Digite seu nome" class="form-control form-register" name="name" id="name" [(ngModel)]="user.name" #name="ngModel" required />
+              <div *ngIf="f.submitted && !name.valid" class="help-block">Campo de nome é obrigatório.</div>
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
-              <input type="text" placeholder="Digite seu Sobrenome" class="form-control form-register" name="lastName" id="fullName" [(ngModel)]="user.lastName" #lastName="ngModel" required />
-              <div *ngIf="f.submitted && !fullName.valid" class="help-block">Campo de sobrenome é obrigatório.</div>
+              <input type="text" placeholder="Digite seu Sobrenome" class="form-control form-register" name="lastName" id="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required />
+              <div *ngIf="f.submitted && !lastName.valid" class="help-block">Campo de sobrenome é obrigatório.</div>
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !age.valid }">
-              <input type="text" placeholder="Digite sua idade" class="form-control form-register" name="age" id="fullName" [(ngModel)]="user.age" #age="ngModel" required />
-              <div *ngIf="f.submitted && !fullName.valid" class="help-block">Campo de idade é obrigatório.</div>
+              <input type="text" placeholder="Digite sua idade" class="form-control form-register" name="age" id="age" [(ngModel)]="user.age" #age="ngModel" required />
+              <div *ngIf="f.submitted && !age.valid" class="help-block">Campo de idade é obrigatório.</div>
             </div>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
               <input type="text" placeholder="E-mail" class="form-control form-register" name="username" id="username"  [(ngModel)]="user.username" #username="ngModel" required />

@@ -12,40 +12,30 @@
 
   <mat-sidenav-container class="example-sidenav-container" fxFlex>
     <mat-sidenav opened="true" disableClose="true" #sidenav fixedTopGap="56" mode="side" Fixed>
-      <mat-icon class="icon-cfp" matListIcon
-        >bar_chart <span>CFP</span></mat-icon
-      >
+      <mat-icon class="icon-cfp" matListIcon>bar_chart <span>CFP</span></mat-icon>
       <mat-divider class="menu-divider"></mat-divider>
       <mat-nav-list>
         <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item">
           <h2 matLine>Home</h2>
           <mat-icon matListIcon>home</mat-icon>
         </a>
-        <a
-          mat-list-item
-          routerLink="/receitas"
-          routerLinkActive="active-list-item"
-        >
+        <a mat-list-item routerLink="/receitas" routerLinkActive="active-list-item">
           <h2 matLine>Receitas</h2>
           <mat-icon matListIcon>local_atm</mat-icon>
         </a>
         <a mat-list-item routerLink="/tipoReceita" routerLinkActive="active-list-item">
           <h2 matLine>Tipos de Receitas</h2>
-          <mat-icon matListIcon>local_atm</mat-icon>
+          <mat-icon matListIcon>money</mat-icon>
         </a>
-        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
-        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Tipos de Despesas</h2>
-          <mat-icon matListIcon>show_chart</mat-icon>
+          <mat-icon matListIcon>bar_chart</mat-icon>
         </a>
-        <a
-          mat-list-item
-          routerLink="/notificacoes"
-          routerLinkActive="active-list-item"
-        >
+        <a mat-list-item routerLink="/notificacoes" routerLinkActive="active-list-item">
           <h2 matLine>Notificações</h2>
           <mat-icon matListIcon>notification_important</mat-icon>
         </a>
@@ -71,7 +61,7 @@
                 <div>
                   <mat-form-field>
                     <input required matInput name="name" placeholder="Nome" [(ngModel)]="name" />
-                  </mat-form-field>           
+                  </mat-form-field>
                 </div>
               </div>
               <mat-card-actions class="button-rows">
@@ -95,13 +85,13 @@
             </div>
           </mat-card-title>
           <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Proucurar...">
-            </mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Proucurar...">
+          </mat-form-field>
           <mat-table #table class="mat-elevation-z3" [dataSource]="dataSource">
             <ng-container matColumnDef="Nome">
               <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>     
+            </ng-container>
             <ng-container matColumnDef="Editar">
               <mat-header-cell mat-header-cell *matHeaderCellDef class="excluir-title">Excluir</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element" class="icons">
@@ -111,7 +101,7 @@
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>          
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
           <mat-paginator class="mat-elevation-z3 paginator" #paginator [pageIndex]="page" [length]="length" [pageSize]="pageSize"
             [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons>
@@ -120,7 +110,7 @@
       </div>
 
       <mat-menu x-position="before" #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item [routerLink]="['/profile']">
           <mat-icon>person</mat-icon>
           <span>Perfil</span>
         </button>
