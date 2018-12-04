@@ -31,15 +31,15 @@
         </a>
         <a mat-list-item routerLink="/tipoReceita" routerLinkActive="active-list-item">
           <h2 matLine>Tipos de Receitas</h2>
-          <mat-icon matListIcon>local_atm</mat-icon>
+          <mat-icon matListIcon>money</mat-icon>
         </a>
-        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/despesas" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Despesas</h2>
           <mat-icon matListIcon>show_chart</mat-icon>
         </a>
-        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item">
+        <a mat-list-item routerLink="/tipoDespesa" routerLinkActive="active-list-item" class="link-desp">
           <h2 matLine>Tipos de Despesas</h2>
-          <mat-icon matListIcon>show_chart</mat-icon>
+          <mat-icon matListIcon>bar_chart</mat-icon>
         </a>
         <a
           mat-list-item
@@ -155,7 +155,7 @@
       </div>
 
       <mat-menu x-position="before" #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item [routerLink]="['/profile']">
           <mat-icon>person</mat-icon>
           <span>Perfil</span>
         </button>

@@ -86,9 +86,13 @@ h1, h2, p, a, span {
   color: #fff !important;
   transition: 0.5s;
 }
-
 .mat-nav-list .mat-list-item:hover {
-  background-color: #162029;
+  background-image: linear-gradient(to top, #00b4db, #0083b0);
+  transition: 0.5s;
+}
+
+.mat-nav-list .mat-list-item.link-desp:hover {
+  background-image: linear-gradient(to top, #e74c3c, #e4533b);
 }
 
 .mat-sidenav-content h1 {
@@ -176,4 +180,12 @@ h1, h2, p, a, span {
 
 .excluir-title {
   padding-left: 24px;
+}
+
+.mat-header-row {
+  background: #E9ECEF;
+}
+
+.mat-header-row .mat-header-cell {
+  font-weight: bold;
 }

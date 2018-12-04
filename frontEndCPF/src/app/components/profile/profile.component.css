@@ -72,7 +72,12 @@ h1, h2, p, a, span {
 }
 
 .mat-nav-list .mat-list-item:hover {
-  background-color: #162029;
+  background-image: linear-gradient(to top, #00b4db, #0083b0);
+  transition: 0.5s;
+}
+
+.mat-nav-list .mat-list-item.link-desp:hover {
+  background-image: linear-gradient(to top, #e74c3c, #e4533b);
 }
 
 .mat-sidenav-content h1 {
@@ -126,4 +131,18 @@ h1, h2, p, a, span {
 
 .card-filtro {
   width: calc(100% - 10px);
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: #0083b0;
+}
+
+.mat-form-field {
+  width: 50%;
+  padding: 5px 20px;
+  font-family: 'Open Sans', sans-serif;
 }
