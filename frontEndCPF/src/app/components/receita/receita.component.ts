@@ -9,6 +9,7 @@ import { Receipt } from '../../model/model.receipt';
 import { DataService } from '../../services/data.service';
 import { ReceiptTypeService } from 'src/app/services/receiptType.service';
 import { ReceiptType } from 'src/app/model/model.receiptType';
+import { EditReceitaComponent } from '../edit-receita/edit-receita.component';
 
 
 
@@ -31,7 +32,7 @@ export class ReceitaComponent implements OnInit {
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Nome', 'Tipo', 'Valor', 'DataVencimento', 'Editar'];
+  displayedColumns: string[] = ['Nome', 'Tipo', 'Valor', 'DataVencimento', 'Excluir', 'Editar'];
   dataSource = new MatTableDataSource<Receipt>();
   message: Receipt;
   tipos = [];
@@ -114,6 +115,13 @@ export class ReceitaComponent implements OnInit {
     this.form.reset();
   }
 
+  editarReceita(receita: Receipt) {
+      const dialogRef = this.dialog.open(EditReceitaComponent, {
+        disableClose: true,
+        width: '80%',
+        data: receita
+      });
+  }
   editReceita(element) {
     console.log(element)
     this.receitaService.updateReceipt(element).subscribe(
@@ -147,17 +155,9 @@ export class ReceitaComponent implements OnInit {
       this.ngOnInit();
     }) 
   }  
-  
-
-
   logOut() {
-    this.authService.logOut()
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-          console.log('error');
-        });
-  }
+    window.localStorage.clear();
+   this.router.navigate(['/login']);
+
+}
 }

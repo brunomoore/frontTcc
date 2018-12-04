@@ -9,6 +9,7 @@ import { Expense } from '../../model/model.expense';
 import { DataService } from '../../services/data.service';
 import { ExpenseTypeService } from 'src/app/services/expenseType.service';
 import { ExpenseType } from 'src/app/model/model.expenseType';
+import { EditDespesaComponent } from '../edit-despesa/edit-despesa.component';
 
 
 
@@ -32,7 +33,7 @@ export class DespesaComponent implements OnInit {
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Parcela', 'Nome', 'Tipo', 'ValorTotal', 'Valor', 'Pago', 'DataVencimento', 'Editar', 'Marcar'];
+  displayedColumns: string[] = ['Parcela', 'Nome', 'Tipo', 'ValorTotal', 'Valor', 'Pago', 'DataVencimento', 'Excluir', 'Editar', 'Marcar'];
   dataSource = new MatTableDataSource<Expense>();
   message: Expense;
 
@@ -108,7 +109,13 @@ export class DespesaComponent implements OnInit {
   limparForm() {
     this.form.reset();
   }
-
+  editarDespesa(despesa: Expense) {
+    const dialogRef = this.dialog.open(EditDespesaComponent, {
+      disableClose: true,
+      width: '80%',
+      data: despesa
+    });
+}
   editDespesa(element) {
     console.log(element)
     this.despesaService.updateExpense(element).subscribe(
@@ -143,16 +150,9 @@ export class DespesaComponent implements OnInit {
     }) 
   }  
   
-
-
   logOut() {
-    this.authService.logOut()
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-          console.log('error');
-        });
-  }
+    window.localStorage.clear();
+   this.router.navigate(['/login']);
+
+}
 }

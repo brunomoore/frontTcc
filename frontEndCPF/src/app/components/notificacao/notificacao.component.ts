@@ -129,17 +129,9 @@ export class NotificacaoComponent implements OnInit {
       this.ngOnInit();
     }) 
   }  
-  
-
-
   logOut() {
-    this.authService.logOut()
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-          console.log('error');
-        });
-  }
+    window.localStorage.clear();
+   this.router.navigate(['/login']);
+
+}
 }

@@ -58,24 +58,39 @@
             </mat-card-title>
               <div fxLayout="column">
                 <div class="filtro-picker">
-                  <mat-form-field appearance="legacy">
+                    <mat-form-field appearance="legacy">
+                        <mat-select placeholder="Mes" name="mes"  [(ngModel)]="mes">
+                          <mat-option *ngFor="let mes of meses" [value]="mes.id">
+                            {{mes.mes}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  <!-- <mat-form-field appearance="legacy">
                     <mat-label>Início</mat-label>
                     <input required matInput [matDatepicker]="inicio" placeholder="De" [(ngModel)]="inicioDate" name="inicio">
                     <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
                     <mat-datepicker #inicio></mat-datepicker>
-                  </mat-form-field>
+                  </mat-form-field> -->
 
                 </div>
                 <div class="filtro-picker">
-                  <mat-form-field appearance="legacy">
+                  <!-- <mat-form-field appearance="legacy">
                     <mat-label>Fim</mat-label>
                     <input required matInput [matDatepicker]="fim" placeholder="Até" [(ngModel)]="fimDate" name="fim">
                     <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
                     <mat-datepicker #fim></mat-datepicker>
+                  </mat-form-field> -->
+
+                  
+
+                  <mat-form-field appearance="legacy"> 
+                    <input required matInput type="number" placeholder="Ano" [(ngModel)]="ano" />
                   </mat-form-field>
+
+
                 </div>
             <mat-card-actions>
-              <button mat-stroked-button color="primary" (click)="buscarGastos(inicio, fim)">Buscar</button>
+              <button mat-stroked-button color="primary" (click)="buscarMes()">Buscar</button>
             </mat-card-actions>
         </div>
         </mat-card>

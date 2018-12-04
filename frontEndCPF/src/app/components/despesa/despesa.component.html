@@ -72,7 +72,7 @@
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <input required matInput name="value" placeholder="Valor da Despesa" [(ngModel)]="value" />
+                    <input required matInput name="value" currencyMask  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'  }" placeholder="Valor da Despesa" [(ngModel)]="value" />
                   </mat-form-field>
                   <mat-form-field>
                     <input required matInput [matDatepicker]="expenseDate" placeholder="Data da despesa" ngModel name="expenseDate">
@@ -159,7 +159,7 @@
                   value="" [(ngModel)]="element.pay" (change)="editDespesa(element)"> </mat-cell>
                   <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
             </ng-container>
-            <ng-container matColumnDef="Editar">
+            <ng-container matColumnDef="Excluir">
               <mat-header-cell mat-header-cell *matHeaderCellDef class="excluir-title">Excluir</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element" class="icons">
                 <button matTooltip="Excluir" title="Excluir" mat-button class="btn-table-excluir " (click)="deletarDespesa(element)">
@@ -168,6 +168,15 @@
               </mat-cell>
               <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
             </ng-container>
+            <ng-container matColumnDef="Editar">
+                <mat-header-cell mat-header-cell *matHeaderCellDef class="excluir-title">Editar</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let element" class="icons">
+                  <button matTooltip="Editar" title="Editar" mat-button class="btn-table-excluir " (click)="editarDespesa(element)">
+                    <i class="material-icons icon-btn">create</i>
+                  </button>
+                </mat-cell>
+                <mat-footer-cell *matFooterCellDef>  </mat-footer-cell>
+              </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             <mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></mat-footer-row>

@@ -30,6 +30,10 @@ import { TipoDespesaComponent } from './components/tipo-despesa/tipo-despesa.com
 import { TipoReceitaComponent } from './components/tipo-receita/tipo-receita.component';
 import { ExpenseTypeService } from './services/expenseType.service';
 import { ReceiptTypeService } from './services/receiptType.service';
+import { EditReceitaComponent } from './components/edit-receita/edit-receita.component';
+import { CurrencyMaskModule } from "ngx-currency-mask";
+import { EditDespesaComponent } from './components/edit-despesa/edit-despesa.component';
+import { EditNotificacaoComponent } from './edit-notificacao/edit-notificacao.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -43,7 +47,10 @@ registerLocaleData(ptBr)
     DialogSuccesComponent,
     NotificacaoComponent,
     TipoDespesaComponent,
-    TipoReceitaComponent
+    TipoReceitaComponent,
+    EditReceitaComponent,
+    EditDespesaComponent,
+    EditNotificacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +61,10 @@ registerLocaleData(ptBr)
     FormsModule,
     MaterialModule,
     FlexLayoutModule,
-    NgxChartsModule
+    NgxChartsModule,
+    CurrencyMaskModule
   ],
-  entryComponents: [DialogSuccesComponent],
+  entryComponents: [DialogSuccesComponent, EditReceitaComponent, EditDespesaComponent],
   providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission, 
   ReceiptService, ExpenseService, DataService, NotificationService, ExpenseTypeService, ReceiptTypeService],
   bootstrap: [AppComponent]

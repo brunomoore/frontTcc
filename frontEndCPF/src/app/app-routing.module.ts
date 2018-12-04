@@ -12,13 +12,13 @@ import { TipoReceitaComponent } from './components/tipo-receita/tipo-receita.com
 
 const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [UrlPermission]},
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'receitas', component: ReceitaComponent},
-  { path: 'despesas', component: DespesaComponent},
-  { path: 'notificacoes', component: NotificacaoComponent },
-  { path: 'tipoDespesa', component: TipoDespesaComponent },
-  { path: 'tipoReceita', component: TipoReceitaComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent, canActivate: [UrlPermission] },
+  { path: 'receitas', component: ReceitaComponent, canActivate: [UrlPermission]},
+  { path: 'despesas', component: DespesaComponent,canActivate: [UrlPermission]},
+  { path: 'notificacoes', component: NotificacaoComponent,canActivate: [UrlPermission] },
+  { path: 'tipoDespesa', component: TipoDespesaComponent,canActivate: [UrlPermission] },
+  { path: 'tipoReceita', component: TipoReceitaComponent,canActivate: [UrlPermission] },
 
   // otherwise redirect to profile
   { path: '**', redirectTo: '/login' }

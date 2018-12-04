@@ -1,0 +1,44 @@
+<div class="container">
+    <!-- <mat-card class="grid-card">
+      <mat-card-header class="grid-card-header"> -->
+        <h2>
+          Editar Receita
+        </h2>
+      <!-- </mat-card-header>
+      <mat-card-content> -->
+          <form #f="ngForm" (ngSubmit)="onSubmit()">
+              <div>
+                <div>
+                  <mat-form-field>
+                    <input required matInput name="name" placeholder="Nome da Receita" [(ngModel)]="name" />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Tipo da Receita" name="type"  [(ngModel)]="type" required>
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+                        {{tipo.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input required matInput name="value"  currencyMask  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'  }" placeholder="Valor da Receita" [(ngModel)]="value" />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input required matInput [matDatepicker]="expireDate" placeholder="Data da Receita" ngModel name="expireDate">
+                    <mat-datepicker-toggle matSuffix [for]="expireDate"></mat-datepicker-toggle>
+                    <mat-datepicker #expireDate></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-card-actions class="button-rows">
+                <button mat-raised-button color="primary" type="button" class="backButton" (click)="backButton()">
+                  Sair
+                </button>
+                <button mat-raised-button class="button-success consultButton" type="submit">
+                  Salvar
+                </button>
+              </mat-card-actions>
+            </form>
+      <!-- </mat-card-content>
+    </mat-card> -->
+  </div>

@@ -21,6 +21,9 @@ export class ReceiptService {
   getReceiptsProfile(id, inicio,fim) {
     return this.http.get<Receipt[]>(AppComponent.API_URL + '/receipt/profile?id=' + id + '&inicio=' + inicio +'&fim=' + fim);
   }
+  getReceiptsProfileMes(id, mes, ano) {
+    return this.http.get<Receipt[]>(AppComponent.API_URL + '/receipt/profilemes?id=' + id + '&mes=' + mes +'&ano=' + ano);
+  }
 
   getReceipt(id) {
     return this.http.get<Receipt>(AppComponent.API_URL + '/receipt', id);
