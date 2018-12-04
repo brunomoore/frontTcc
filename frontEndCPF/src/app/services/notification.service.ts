@@ -21,11 +21,12 @@ export class NotificationService {
   getNotification(id) {
     return this.http.get<Notification>(AppComponent.API_URL + '/notification', id);
   }
- 
+
   deleteNotification(id) {
     return this.http.delete(`${AppComponent.API_URL}/notification/${id}`);
   }
   updateNotification(notification: Notification) {
     return this.http.put(`${AppComponent.API_URL}/notification/${notification.id}`, notification);
   }
+
 }

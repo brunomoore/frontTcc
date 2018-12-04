@@ -4,49 +4,48 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { DialogSuccesComponent } from 'src/app/dialog-succes/dialog-succes.component';
-
+export interface Tipo {
+  id: number;
+  type: string;
+}
 @Component({
-  selector: 'app-edit-despesa',
-  templateUrl: './edit-despesa.component.html',
-  styleUrls: ['./edit-despesa.component.css']
+  selector: 'app-edit-notificacao',
+  templateUrl: './edit-notificacao.component.html',
+  styleUrls: ['./edit-notificacao.component.css']
 })
 export class EditNotificacaoComponent implements OnInit {
   @ViewChild('f')
   form: any;
   // @Input() editAutoTexto: AutoTexto;
 
-  despesa: Notification;
-  tipos = [];
+  notificacao: Notification;
+  tipos: Tipo[] = [
+    { id: 1, type: "Saldo Negativo" },
+    { id: 2, type: "Saldo" },
+    { id: 3, type: "Contas a Vencer" },
+  ];
   name: string;
-  expireDate: Date;
-  notificationDate: Date;
-  parcela: number;
+  description: string;
+  param: string;
+  tipo: number;
   id: number;
 
   constructor(
     private router: Router,
     public dialog: MatDialog,
     // private data: EditAutoTexto,
-    private receitpService: NotificationService,
+    private notificationService: NotificationService,
     public dialogRef: MatDialogRef<EditNotificacaoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit() {
-    this.tipoService.getNotificationTypes().subscribe(
-      data => {
-          this.tipos = data;
-        }
-      );
-    this.despesa = this.data;
-    this.name = this.despesa.name;
-    this.value = this.despesa.value;
-    this.type = this.despesa.type;
-    this.expireDate = this.despesa.expireDate;
-    this.notificationDate = this.despesa.notificationDate;
-    this.parcela = this.despesa.parcela;
-    this.id = this.despesa.id;
-    console.log(this.expireDate)
+    this.notificacao = this.data;
+    this.name = this.notificacao.name;
+    this.description = this.notificacao.description;
+    this.tipo = this.notificacao.tipo;
+    this.id = this.notificacao.id;
+    this.param = this.notificacao.param;
   }
 
   compareObjects(o1: any, o2: any): boolean {
@@ -58,20 +57,17 @@ export class EditNotificacaoComponent implements OnInit {
   }
 
   onSubmit() {
-    const despesa: Notification = {
+    const notificacao: Notification = {
       name: this.form.value.name,
-      value: this.form.value.value,
-      id: this.despesa.id,
-      ativo: this.despesa.ativo,
-      pay: this.despesa.pay,
-      type: this.form.value.type,
-      notificationDate: this.form.value.notificationDate,
-      expireDate: this.form.value.expireDate,
-      user: this.despesa.user,
-      parcela:this.form.value.parcela
+      description: this.form.value.description,
+      param: this.form.value.param,
+      tipo: this.form.value.tipo,
+      id: this.notificacao.id,
+      ativo: this.notificacao.ativo,
+      user: this.notificacao.user,
     };
-    console.log(despesa)
-      this.receitpService.updateNotification(despesa).subscribe(
+    console.log(notificacao);
+      this.notificationService.updateNotification(notificacao).subscribe(
       result => {
         this.dialogRef.close();
         const dialogRefSuccess = this.dialog.open(DialogSuccesComponent, {
@@ -92,8 +88,8 @@ export class EditNotificacaoComponent implements OnInit {
             path: 'NR'
           }
         });
-      }) 
-    }   
+      })
+    }
 
 }
 

@@ -1,3 +1,34 @@
-<p>
-  edit-notificacao works!
-</p>
+<div class="container">
+  <!-- <mat-card class="grid-card">
+    <mat-card-header class="grid-card-header"> -->
+      <h2>
+        Editar Notificacao
+      </h2>
+    <!-- </mat-card-header>
+    <mat-card-content> -->
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+          <div>
+            <mat-form-field>
+              <input required matInput name="name" placeholder="Nome" [(ngModel)]="name" />
+            </mat-form-field>
+            <mat-form-field>
+              <input required matInput name="description" placeholder="Descrição" [(ngModel)]="description" />
+            </mat-form-field>
+            <mat-form-field>
+              <input required matInput name="param" placeholder="Parametro" [(ngModel)]="param" />
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-card-actions class="button-rows">
+          <button mat-raised-button color="primary" type="button" class="backButton" (click)="backButton()">
+            Voltar
+          </button>
+          <button mat-raised-button class="button-success consultButton" type="submit">
+            Salvar
+          </button>
+        </mat-card-actions>
+      </form>
+    <!-- </mat-card-content>
+  </mat-card> -->
+</div>

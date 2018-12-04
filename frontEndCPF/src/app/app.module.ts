@@ -33,7 +33,7 @@ import { ReceiptTypeService } from './services/receiptType.service';
 import { EditReceitaComponent } from './components/edit-receita/edit-receita.component';
 import { CurrencyMaskModule } from "ngx-currency-mask";
 import { EditDespesaComponent } from './components/edit-despesa/edit-despesa.component';
-import { EditNotificacaoComponent } from './edit-notificacao/edit-notificacao.component';
+import { EditNotificacaoComponent } from './components/edit-notificacao/edit-notificacao.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -64,8 +64,8 @@ registerLocaleData(ptBr)
     NgxChartsModule,
     CurrencyMaskModule
   ],
-  entryComponents: [DialogSuccesComponent, EditReceitaComponent, EditDespesaComponent],
-  providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission, 
+  entryComponents: [DialogSuccesComponent, EditReceitaComponent, EditDespesaComponent, EditNotificacaoComponent],
+  providers: [   {provide: LOCALE_ID, useValue: 'pt'}, AuthService, AccountService, UrlPermission,
   ReceiptService, ExpenseService, DataService, NotificationService, ExpenseTypeService, ReceiptTypeService],
   bootstrap: [AppComponent]
 })

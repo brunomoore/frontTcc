@@ -74,10 +74,18 @@
                   </mat-form-field>
                   <mat-form-field>
                     <input required matInput name="description" placeholder="Descrição" [(ngModel)]="description" />
-                  </mat-form-field>  
+                  </mat-form-field>
                   <mat-form-field>
                     <input required matInput name="param" placeholder="Parametro" [(ngModel)]="param" />
-                  </mat-form-field>            
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select placeholder="Tipo de Notificacao" name="tipo"  [(ngModel)]="tipo" required>
+                      <mat-option>--</mat-option>
+                      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+                        {{tipo.type}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
               </div>
               <mat-card-actions class="button-rows">
@@ -107,16 +115,17 @@
             <ng-container matColumnDef="Nome">
               <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>     
+            </ng-container>
             <ng-container matColumnDef="Param">
               <mat-header-cell *matHeaderCellDef>Parametro</mat-header-cell>
-              <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.param}} </mat-cell>              
-            </ng-container>       
+              <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.param}} </mat-cell>
+            </ng-container>
             <ng-container matColumnDef="Descricao">
               <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
-              <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>              
-            </ng-container>                    
-            <ng-container matColumnDef="Editar">
+              <mat-cell id="txEstendido" mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Excluir">
+
               <mat-header-cell mat-header-cell *matHeaderCellDef>Excluir</mat-header-cell>
               <mat-cell mat-cell *matCellDef="let element" class="icons">
                 <button matTooltip="Excluir" title="Excluir" mat-button class="btn-table-excluir " (click)="deletarNotificacao(element)">
@@ -124,8 +133,16 @@
                 </button>
               </mat-cell>
             </ng-container>
+            <ng-container matColumnDef="Editar">
+              <mat-header-cell mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+              <mat-cell mat-cell *matCellDef="let element" class="icons">
+                <button matTooltip="Editar" title="Editar" mat-button class="btn-table-excluir " (click)="editarNotificacao(element)">
+                  <i class="material-icons icon-btn">create</i>
+                </button>
+              </mat-cell>
+            </ng-container>
             <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>          
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
           <mat-paginator class="mat-elevation-z3 paginator" #paginator [pageIndex]="page" [length]="length" [pageSize]="pageSize"
             [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons>

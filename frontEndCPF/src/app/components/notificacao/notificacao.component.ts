@@ -8,7 +8,11 @@ import { User } from '../../model/model.user';
 import { Notification } from '../../model/model.notification';
 import { DataService } from '../../services/data.service';
 import { ReceiptTypeService } from 'src/app/services/receiptType.service';
-
+import { EditNotificacaoComponent } from '../edit-notificacao/edit-notificacao.component';
+export interface Tipo {
+  id: number;
+  type: string;
+}
 
 
 @Component({
@@ -18,18 +22,24 @@ import { ReceiptTypeService } from 'src/app/services/receiptType.service';
 })
 export class NotificacaoComponent implements OnInit {
   name: string ;
-  param: string; 
+  param: string;
   description: string;
   ativo: Boolean;
+  tipo:number;
   currentUser: User;
   userId: number;
   listaNotificacao: Notification[] = [];
   length = 0;
   pageSize = 10;
   page = 0;
-  displayedColumns: string[] = ['Nome', 'Param', 'Descricao', 'Editar'];
+  displayedColumns: string[] = ['Nome', 'Param', 'Descricao', 'Excluir', 'Editar'];
   dataSource = new MatTableDataSource<Notification>();
   message: Notification;
+  tipos: Tipo[] = [
+    { id: 1, type: "Saldo Negativo" },
+    { id: 2, type: "Saldo" },
+    { id: 3, type: "Contas a Vencer" },
+  ]
 
   @ViewChild('f') form: any;
   constructor(
@@ -107,11 +117,19 @@ export class NotificacaoComponent implements OnInit {
           path: 'NR',
           fechar: false
         }
-        
+
       });
       this.ngOnInit();
-    }) 
-  }   
+    });
+  }
+
+  editarNotificacao(notificacao: Notification) {
+    const dialogRef = this.dialog.open(EditNotificacaoComponent, {
+      disableClose: true,
+      width: '80%',
+      data: notificacao
+    });
+  }
 
   deletarNotificacao(element) {
     console.log(element)
@@ -124,11 +142,11 @@ export class NotificacaoComponent implements OnInit {
           path: 'NR',
           fechar: false
         }
-        
+
       });
       this.ngOnInit();
-    }) 
-  }  
+    });
+  }
   logOut() {
     window.localStorage.clear();
    this.router.navigate(['/login']);

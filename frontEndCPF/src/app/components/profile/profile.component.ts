@@ -11,6 +11,8 @@ import { Receipt } from './../../model/model.receipt';
 import { single } from './data';
 import { DataService } from 'src/app/services/data.service';
 import { DatePipe } from '@angular/common';
+import { DialogSuccesComponent } from '../../dialog-succes/dialog-succes.component';
+import { MatDialog } from '@angular/material';
 export interface Mes {
   id: number;
   mes: string;
@@ -59,7 +61,7 @@ export class ProfileComponent implements OnInit {
     { id: 11, mes: "Novembro" },
     { id: 12, mes: "Dezembro" }
   ]
-  
+
 
   view: any[] = [700, 400];
 
@@ -79,6 +81,7 @@ export class ProfileComponent implements OnInit {
   };
 
   constructor(public authService: AuthService, public router: Router,
+    public dialog: MatDialog,
     public receiptService: ReceiptService, public expenseService: ExpenseService, public dataService: DataService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     Object.assign(this, { single });
@@ -111,13 +114,13 @@ export class ProfileComponent implements OnInit {
     //         }
     //       ];
     //     }
-        
-        
+
+
     //   );
     //   this.receiptService.getReceiptsProfile(this.currentUser.id, firstDay, lastDay).subscribe(
     //     data => {
     //       this.receipts = data;
-  
+
     //       this.valorRec = this.getTotalCostReceitas();
     //       this.valorDesp = this.getTotalCostDespesas();
     //       this.valorTot = this.getSaldo();
@@ -139,7 +142,7 @@ export class ProfileComponent implements OnInit {
     //       console.log(this.receipts)
     //       console.log(this.expenses)
     //     }
-      
+
     //   );
     // }
     // else {
@@ -186,7 +189,7 @@ export class ProfileComponent implements OnInit {
     //         }
     //       ];
     //     }
-        
+
     //   );
     // }
     this.buscarMes();
@@ -202,7 +205,7 @@ export class ProfileComponent implements OnInit {
     const saldoTotal = this.getTotalCostReceitas() - this.getTotalCostDespesas();
     return saldoTotal
   }
-  
+
 
   buscarMes() {
     if (this.mes === undefined && this.ano === undefined) {
@@ -229,10 +232,44 @@ export class ProfileComponent implements OnInit {
               "value": this.valorTot
             }
           ];
+          if (this.valorTot < 0) {
+            const dialogRef = this.dialog.open(DialogSuccesComponent, {
+              width: '40%',
+              data: {
+                titulo: 'Seu saldo está negativo!',
+                path: 'NR',
+                fechar: false
+              }
+            });
+          }
+          const dateNotifica = new Date();
+          this.expenses.forEach(element => {
+            const dias = element.expireDate.getTime() - dateNotifica.getTime();
+            if (dias <= 5 ) {
+              const dialogRef = this.dialog.open(DialogSuccesComponent, {
+                width: '40%',
+                data: {
+                  titulo: 'Você possui contas que vencerão em ' + dias + 'dias.',
+                  path: 'NR',
+                  fechar: false
+                }
+              });
+            }
+            if (dias <= 0 ) {
+              const dialogRef = this.dialog.open(DialogSuccesComponent, {
+                width: '40%',
+                data: {
+                  titulo: 'Você possui contas vencidas.',
+                  path: 'NR',
+                  fechar: false
+                }
+              });
+            }
+
+          });
+
           var dataAtual = new Date();
           var date = new Date(this.ano, this.mes , 0);
-          console.log(dataAtual)
-          console.log(date)
            if(dataAtual.getTime() == date.getTime()){
             console.log(date)
               if(this.valorTot < 0) {
@@ -243,34 +280,30 @@ export class ProfileComponent implements OnInit {
                   expenseDate : dataAtual,
                   expireDate : dataAtual,
                   parcela : 1,
-                }
-                console.log(expense)
-                console.log(this.currentUser.id)
+                };
                   this.expenseService.createExpense(expense,this.currentUser.id, 1).subscribe(
                     result => {
-                                       
+
                     });
-                    
+
                   }
-                  else{
+                  else {
 
                     var receipt: Receipt = {
                       name : "Sobra Licita",
                       value : this.valorTot,
                       expireDate : dataAtual,
-                    }
+                    };
                     console.log(expense)
                     console.log(this.currentUser.id)
                       this.receiptService.createReceipt(receipt,this.currentUser.id).subscribe(
                         result => {
-                                           
+
                         });
                   }
               }
-      
-           
-      }
-    );
+    });
+
     this.receiptService.getReceiptsProfileMes(this.currentUser.id, this.mes, this.ano).subscribe(
       data => {
         this.receipts = data;
